@@ -7,12 +7,10 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 
-from integrate import __version__
-
 project = 'pyintegrate'
 copyright = '2023 Definedge Securities Broking Pvt. Ltd.'
 author = 'Definedge Securities'
-release = __version__
+release = '1.0.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

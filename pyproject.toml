@@ -85,14 +85,13 @@ check_untyped_defs = true
 exclude = ["__pycache__", ".git", ".mypy_cache", ".pytest_cache", ".vscode", ".venv", "docs", "build", "dist", "venv"]
 
 [tool.semantic_release]
-version_variable = "pyintegrate/__init__.py:__version__"
+version_variable = [
+    "pyintegrate/__init__.py:__version__",
+    "docs/conf.py:release",
+]
 version_toml = "pyproject.toml:tool.poetry.version"
-major_on_zero = false
-commit_subject = "chore(release): bump version to v{version}"
 build_command = "curl -sSL https://install.python-poetry.org | python - && export PATH=\"/github/home/.local/bin:$PATH\" && poetry install && poetry build"
-upload_to_repository = true
 branch = "main"
-changelog_components = "semantic_release.changelog.changelog_headers,semantic_release.changelog.compare_url"
 
 [tool.coverage.run]
 branch = true
