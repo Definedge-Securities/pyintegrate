@@ -46,7 +46,7 @@ pytest-cov = "^4.1.0"
 responses = "^0.23.2"
 
 [tool.poetry.group.docs.dependencies]
-sphinx = "<7"
+sphinx = "<8"
 furo = "^2023.7.26"
 
 [tool.bandit]
