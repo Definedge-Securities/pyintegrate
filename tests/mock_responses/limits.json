@@ -1,0 +1,11 @@
+{
+    "status": "SUCCESS",
+    "cash": "2500000.00",
+    "payin": "0.00",
+    "payout": "0.0",
+    "brokerCollateralAmount": "0.00",
+    "unClearedCash": "0.00",
+    "dayCash": "0.00",
+    "turnOverLimit": "750000000.00",
+    "pendordvallmt": "450000000.00"
+}

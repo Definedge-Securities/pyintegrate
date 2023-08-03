@@ -1,0 +1,116 @@
+[tool.poetry]
+name = "pyintegrate"
+version = "1.0.0"
+description = "Definedge Securities Integrate API Python Client"
+authors = ["Definedge Securities <integrate@definedge.com>"]
+homepage = "https://www.definedgesecurities.com/api-documentation/"
+repository = "https://github.com/Definedge-Securities/pyintegrate"
+documentation = "https://pyintegrate.readthedocs.io/en/latest/"
+license = "MIT"
+readme = "README.rst"
+packages = [{include = "integrate"}]
+classifiers = [
+    "Development Status :: 1 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Financial and Insurance Industry",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python",
+    "Topic :: Office/Business :: Financial :: Investment",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries"
+]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+autobahn = "^23.6.2"
+pyopenssl = "^23.2.0"
+requests = "^2.31.0"
+service-identity = "^21.1.0"
+twisted = "^22.10.0"
+
+[tool.poetry.group.dev.dependencies]
+bandit = "^1.7.5"
+black = "^23.7.0"
+flake8 = "^6.1.0"
+isort = "^5.12.0"
+mypy = "^1.4.1"
+pre-commit = "^3.3.3"
+python-semantic-release = "^8.0.4"
+
+[tool.poetry.group.test.dependencies]
+coverage = "^7.2.7"
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+responses = "^0.23.2"
+
+[tool.poetry.group.docs.dependencies]
+sphinx = "<7"
+furo = "^2023.7.26"
+
+[tool.bandit]
+exclude_dirs = [".git/*", ".venv/*", "venv/*", "docs/*", "build/*", "dist/*"]
+skips = ["B101"]
+
+[tool.black]
+line-length = 79
+include = '\.pyi?$'
+include_trailing_comma = true
+skip-string-normalization = 1
+exclude = '''
+(
+    __pycache__
+  | \.git
+  | \.mypy_cache
+  | \.pytest_cache
+  | \.vscode
+  | \.venv
+  | docs
+  | build
+  | dist
+  | venv
+)
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 79
+skip_gitignore = true
+skip_glob = [".git/*", ".venv/*", "venv/*", "docs/*", "build/*", "dist/*"]
+
+[tool.mypy]
+no_site_packages = true
+check_untyped_defs = true
+exclude = ["__pycache__", ".git", ".mypy_cache", ".pytest_cache", ".vscode", ".venv", "docs", "build", "dist", "venv"]
+
+[tool.semantic_release]
+version_variable = "pyintegrate/__init__.py:__version__"
+version_toml = "pyproject.toml:tool.poetry.version"
+major_on_zero = false
+commit_subject = "chore(release): bump version to v{version}"
+build_command = "curl -sSL https://install.python-poetry.org | python - && export PATH=\"/github/home/.local/bin:$PATH\" && poetry install && poetry build"
+upload_to_repository = true
+branch = "main"
+changelog_components = "semantic_release.changelog.changelog_headers,semantic_release.changelog.compare_url"
+
+[tool.coverage.run]
+branch = true
+source = ["integrate"]
+
+[tool.coverage.report]
+skip_covered = true
+skip_empty = true
+show_missing = true
+
+[tool.coverage.html]
+directory = "cov_html"
+
+[tool.pytest.ini_options]
+testpaths = [
+  "tests/unit",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

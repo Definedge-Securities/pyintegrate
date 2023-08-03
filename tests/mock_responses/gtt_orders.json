@@ -1,0 +1,52 @@
+{
+    "status": "SUCCESS",
+    "pendingGTTOrderBook": [
+        {
+            "alert_id": "1234001",
+            "tradingsymbol": "TCS-EQ",
+            "exchange": "NSE",
+            "token": "11536",
+            "remarks": "",
+            "order_time": "16:23:36 27-03-2023",
+            "order_type": "BUY",
+            "price_type": "LIMIT",
+            "product_type": "CNC",
+            "lotsize": "1",
+            "trigger_price": "3390.00",
+            "quantity": "3",
+            "condition": "LTP_ABOVE"
+        },
+        {
+            "alert_id": "1234002",
+            "tradingsymbol": "RELIANCE-EQ",
+            "exchange": "NSE",
+            "token": "2885",
+            "remarks": "",
+            "order_time": "16:24:44 27-03-2023",
+            "order_type": "BUY",
+            "price_type": "LIMIT",
+            "product_type": "CNC",
+            "lotsize": "1",
+            "trigger_price": "2200.00",
+            "quantity": "1",
+            "condition": "LTP_BELOW"
+        },
+        {
+            "alert_id": "1234003",
+            "tradingsymbol": "NIFTY29MAR23F",
+            "exchange": "NFO",
+            "token": "37834",
+            "remarks": "admin",
+            "order_time": "16:31:10 27-03-2023",
+            "order_type": "SELL",
+            "price_type": "LIMIT",
+            "product_type": "NORMAL",
+            "lotsize": "50",
+            "stoploss_quantity": "50",
+            "target_quantity": "50",
+            "stoploss_price": "17700.00",
+            "target_price": "17400.00",
+            "condition": "LMT_OCO"
+        }
+    ]
+}

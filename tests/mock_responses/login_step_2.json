@@ -1,0 +1,69 @@
+{
+    "request_time": "11:10:23 26-04-2023",
+    "actid": "unit_test",
+    "uname": "unit_test",
+    "prarr": [
+        {
+            "prd": "C",
+            "s_prdt_ali": "CNC",
+            "exch": [
+                "NSE",
+                "BSE"
+            ]
+        },
+        {
+            "prd": "M",
+            "s_prdt_ali": "NRML",
+            "exch": [
+                "NFO",
+                "CDS",
+                "MCX",
+                "BSE",
+                "NSE"
+            ]
+        },
+        {
+            "prd": "I",
+            "s_prdt_ali": "MIS",
+            "exch": [
+                "NSE",
+                "BSE",
+                "NFO",
+                "CDS",
+                "MCX"
+            ]
+        },
+        {
+            "prd": "H",
+            "s_prdt_ali": "CO",
+            "exch": [
+                "NSE",
+                "BSE",
+                "NFO",
+                "CDS",
+                "MCX"
+            ]
+        }
+    ],
+    "stat": "Ok",
+    "susertoken": "unit_test",
+    "email": "unit_test",
+    "uid": "unit_test",
+    "brnchid": "HO",
+    "orarr": [
+        "MKT",
+        "LMT",
+        "SL-LMT",
+        "SL-MKT"
+    ],
+    "exarr": [
+        "NSE",
+        "BSE",
+        "NFO",
+        "CDS",
+        "MCX"
+    ],
+    "brkname": "DEFINEDGE",
+    "lastaccesstime": "1234567890",
+    "api_session_key": "unit_test"
+}

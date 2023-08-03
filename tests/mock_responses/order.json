@@ -1,0 +1,18 @@
+{
+    "order_id": "23072600000002",
+    "tradingsymbol": "TCS-EQ",
+    "token": "11536",
+    "quantity": "1",
+    "price_type": "MARKET",
+    "product_type": "CNC",
+    "order_entry_time": "11:15:05 26-07-2023",
+    "order_status": "COMPLETE",
+    "order_type": "BUY",
+    "exchange_orderid": "1300000000010094",
+    "pending_qty": "0",
+    "price": "0.00",
+    "exchange_time": "26-07-2023 11:15:06",
+    "exchange": "NSE",
+    "disclosed_quantity": "0",
+    "validity": "DAY"
+}
