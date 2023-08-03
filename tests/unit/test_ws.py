@@ -23,7 +23,7 @@
 ###############################################################################
 
 from base64 import b64encode
-from hashlib import sha256
+from hashlib import sha1
 from unittest.mock import Mock
 
 from autobahn.websocket.protocol import WebSocketProtocol  # type: ignore
@@ -88,7 +88,7 @@ def test_auto_ping(iwsproto: IntegrateWebSocketClientProtocol) -> None:
         b"Upgrade: websocket\x0d\x0a"
         b"Connection: upgrade\x0d\x0a"
         b"Sec-Websocket-Accept: "
-        + b64encode(sha256(key).digest())
+        + b64encode(sha1(key).digest())  # nosec: B324
         + b"\x0d\x0a\x0d\x0a"
     )
     iwsproto.processHandshake()

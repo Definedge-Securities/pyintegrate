@@ -27,7 +27,7 @@ python = "^3.9"
 autobahn = "^23.6.2"
 pyopenssl = "^23.2.0"
 requests = "^2.31.0"
-service-identity = "^21.1.0"
+service-identity = "^23.1.0"
 twisted = "^22.10.0"
 
 [tool.poetry.group.dev.dependencies]
@@ -43,10 +43,10 @@ python-semantic-release = "^8.0.4"
 coverage = "^7.2.7"
 pytest = "^7.4.0"
 pytest-cov = "^4.1.0"
-responses = "^0.23.2"
+responses = "^0.23.3"
 
 [tool.poetry.group.docs.dependencies]
-sphinx = "<7"
+sphinx = "^7.1.2"
 furo = "^2023.7.26"
 
 [tool.bandit]
