@@ -34,6 +34,11 @@ logger.setLevel(DEBUG)
 class IntegrateOrders:
     """
     Definedge Securities Integrate Orders API class
+
+    :param `connect_to_integrate`: The connection object.
+    :param `logging`: Enable or disable logging. Defaults to `False`. If set to True, will print all requests and responses to logger.
+    :type `connect_to_integrate`: `ConnectToIntegrate`
+    :type `logging`: `bool`
     """
 
     ORDER_STATUS_NEW = "NEW"
@@ -48,14 +53,6 @@ class IntegrateOrders:
         connect_to_integrate: ConnectToIntegrate,
         logging: bool = False,
     ) -> None:
-        """
-        Initialise IntegrateOrders class.
-
-        :param `connect_to_integrate`: The connection object.
-        :param `logging`: Enable or disable logging. Defaults to `False`. If set to True, will print all requests and responses to logger.
-        :type `connect_to_integrate`: `ConnectToIntegrate`
-        :type `logging`: `bool`
-        """
         self._logging: bool = logging
 
         self.c2i: ConnectToIntegrate = connect_to_integrate

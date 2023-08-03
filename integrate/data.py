@@ -35,6 +35,11 @@ logger.setLevel(DEBUG)
 class IntegrateData:
     """
     Definedge Securities Integrate Data API class
+
+    :param `connect_to_integrate`: The connection object.
+    :param `logging`: Enable or disable logging. Defaults to `False`. If set to True, will print all requests and responses to logger.
+    :type `connect_to_integrate`: `ConnectToIntegrate`
+    :type `logging`: `bool`
     """
 
     def __init__(
@@ -42,14 +47,6 @@ class IntegrateData:
         connect_to_integrate: ConnectToIntegrate,
         logging: bool = False,
     ) -> None:
-        """
-        Initialise IntegrateData class.
-
-        :param `connect_to_integrate`: The connection object.
-        :param `logging`: Enable or disable logging. Defaults to `False`. If set to True, will print all requests and responses to logger.
-        :type `connect_to_integrate`: `ConnectToIntegrate`
-        :type `logging`: `bool`
-        """
         self._logging: bool = logging
 
         self.c2i: ConnectToIntegrate = connect_to_integrate

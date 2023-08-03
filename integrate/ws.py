@@ -121,6 +121,10 @@ class IntegrateWebSocketClientFactory(
     """
     Definedge Securities Integrate autobahn WebSocket client factory to implement auto reconnection.
 
+    :param `reconnect`: Flag indicating whether to reconnect on connection lost.
+    :type `reconnect`: `bool`
+    :returns: `None`
+
     Auto reconnection is enabled by default and it can be disabled by passing :py:attr:`IntegrateWebSocket.reconnect` = False in :py:meth:`IntegrateWebSocket.connect`.
     Reconnection cannot happen if the event loop is terminated using :py:meth:`IntegrateWebSocket.stop` method inside :py:meth:`IntegrateWebSocket.on_close` callback.
 
@@ -149,13 +153,6 @@ class IntegrateWebSocketClientFactory(
     protocol = IntegrateWebSocketClientProtocol
 
     def __init__(self, *args, **kwargs) -> None:  # type: ignore
-        """
-        Initialize with default values.
-
-        :param `reconnect`: Flag indicating whether to reconnect on connection lost.
-        :type `reconnect`: `bool`
-        :returns: `None`
-        """
         # Pop out reconnect flag from kwargs as it is not a valid argument for WebSocketClientFactory
         self._reconnect: bool = kwargs.pop("reconnect", True)  # type: ignore
         super(IntegrateWebSocketClientFactory, self).__init__(*args, **kwargs)  # type: ignore
@@ -305,6 +302,11 @@ class IntegrateWebSocket:
     """
     WebSocket client for interacting with Definedge Securities' streaming quotes, order and depth updates.
 
+    :param `connect_to_integrate`: The connection object.
+    :param `logging`: Enable or disable logging. Defaults to `False`.
+    :type `connect_to_integrate`: `ConnectToIntegrate`
+    :type `logging`: `bool`
+
     Callbacks
     ---------
 
@@ -332,14 +334,6 @@ class IntegrateWebSocket:
         connect_to_integrate: ConnectToIntegrate,
         logging: bool = False,
     ) -> None:
-        """
-        Initialise the IntegrateWebSocket client.
-
-        :param `connect_to_integrate`: The connection object.
-        :param `logging`: Enable or disable logging. Defaults to `False`.
-        :type `connect_to_integrate`: `ConnectToIntegrate`
-        :type `logging`: `bool`
-        """
         # Initialize properties
         self.c2i: ConnectToIntegrate = connect_to_integrate
         self.subscriptions: dict[str, set[str]] = {
