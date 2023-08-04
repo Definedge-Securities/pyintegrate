@@ -93,6 +93,7 @@ Simple example to stream live quotes, get order and depth updates:
 
     # Callback called when the WebSocket connection is established and the login is successful.
     def on_login(iws: IntegrateWebSocket) -> None:
+        # Subscribe to a list of symbols (TCS and TATAMOTORS here).
         tokens: list[tuple[str, str]] = [
             (iws.c2i.EXCHANGE_TYPE_NSE, "11536"),
             (iws.c2i.EXCHANGE_TYPE_NSE, "3456"),
