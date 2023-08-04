@@ -166,4 +166,6 @@ OR you can store the session keys and use them for subsequent runs as below
 
     poetry run pytest -s tests/integration --uid "user_id" --actid "account_id" --apiSessionKey "api_session_key" --wsSessionKey "ws_session_key"
 
-.. note:: Integration tests require a valid API secret as the orders would be placed on the live market. Please use a test account for integration testing.
+Note
+----
+Integration tests require a valid API secret as the orders would be placed on the live market. Please use a test account for integration testing.
