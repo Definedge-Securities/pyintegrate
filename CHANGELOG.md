@@ -2,6 +2,25 @@
 
 
 
+## v1.0.0 (2023-08-04)
+
+### Breaking
+
+* docs: Updated README
+
+Added comment with symbol names for tokens mentioned in the example
+
+BREAKING CHANGE: Update to 1.0.0 ([`b52ccc4`](https://github.com/Definedge-Securities/pyintegrate/commit/b52ccc4d03f3604f0b13741e1ec67f4566919d5e))
+
+### Ci
+
+* ci: pypi-publish version change ([`01fc292`](https://github.com/Definedge-Securities/pyintegrate/commit/01fc292d40e7a821d678a3afda8e7312cf3c1af7))
+
+### Unknown
+
+* Merge branch &#39;main&#39; of https://github.com/Definedge-Securities/pyintegrate ([`e2ec921`](https://github.com/Definedge-Securities/pyintegrate/commit/e2ec9217bffcb010351f61110a48c173f5f98fbc))
+
+
 ## v0.0.1 (2023-08-04)
 
 ### Ci
