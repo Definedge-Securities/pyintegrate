@@ -2,6 +2,15 @@
 
 
 
+## v1.0.2 (2023-08-04)
+
+### Fix
+
+* fix: trailing comma ([`2ed5060`](https://github.com/Definedge-Securities/pyintegrate/commit/2ed50601cac64064bf7e8cacdcaa84ccca25326a))
+
+* fix: classifiers ([`3e793d7`](https://github.com/Definedge-Securities/pyintegrate/commit/3e793d79c893827fd0c1ab4b3c7bbd61d0c0a5a8))
+
+
 ## v1.0.1 (2023-08-04)
 
 ### Fix
