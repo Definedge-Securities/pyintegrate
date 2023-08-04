@@ -2,6 +2,17 @@
 
 
 
+## v1.0.1 (2023-08-04)
+
+### Fix
+
+* fix: remove api token ([`1ed998d`](https://github.com/Definedge-Securities/pyintegrate/commit/1ed998d7b0472bf0aa407aca46190b70aa623a5e))
+
+### Unknown
+
+* Merge branch &#39;main&#39; of https://github.com/Definedge-Securities/pyintegrate ([`680099b`](https://github.com/Definedge-Securities/pyintegrate/commit/680099b4c1f72682552652c520402ec23e944a63))
+
+
 ## v1.0.0 (2023-08-04)
 
 ### Breaking
