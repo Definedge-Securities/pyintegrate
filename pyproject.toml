@@ -91,7 +91,6 @@ version_variable = [
 ]
 version_toml = "pyproject.toml:tool.poetry.version"
 build_command = "curl -sSL https://install.python-poetry.org | python - && export PATH=\"/github/home/.local/bin:$PATH\" && poetry install && poetry build"
-branch = "main"
 
 [tool.coverage.run]
 branch = true
