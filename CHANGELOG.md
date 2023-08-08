@@ -2,6 +2,21 @@
 
 
 
+## v1.0.5 (2023-08-08)
+
+### Fix
+
+* fix: fix FileNotFoundError for allmaster.csv ([`41340b4`](https://github.com/Definedge-Securities/pyintegrate/commit/41340b4b6ed6a86ed908683655aaacd2bd643f99))
+
+* fix: update CONTRIBUTING.md ([`0f22dda`](https://github.com/Definedge-Securities/pyintegrate/commit/0f22dda30ff196d46c695e8c99d407bddf37f153))
+
+* fix: update CONTRIBUTING.md ([`345b5db`](https://github.com/Definedge-Securities/pyintegrate/commit/345b5dbe49e29c3fbc53f511604c5f1131c78652))
+
+### Unknown
+
+* Merge branch &#39;main&#39; of https://github.com/Definedge-Securities/pyintegrate ([`6b50e06`](https://github.com/Definedge-Securities/pyintegrate/commit/6b50e06025863feebed308e956963dad1e671e02))
+
+
 ## v1.0.4 (2023-08-08)
 
 ### Fix
