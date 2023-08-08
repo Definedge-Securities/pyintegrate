@@ -2,6 +2,17 @@
 
 
 
+## v1.0.4 (2023-08-08)
+
+### Fix
+
+* fix: README and constants ([`db1a4e2`](https://github.com/Definedge-Securities/pyintegrate/commit/db1a4e2abd2eb06e239ae102de94155257fc69b0))
+
+### Unknown
+
+* Merge branch &#39;main&#39; of https://github.com/Definedge-Securities/pyintegrate ([`b98d797`](https://github.com/Definedge-Securities/pyintegrate/commit/b98d797eb30de7d1754cdba98b72f7e110fab29c))
+
+
 ## v1.0.3 (2023-08-08)
 
 ### Chore
