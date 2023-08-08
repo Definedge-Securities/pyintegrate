@@ -178,7 +178,7 @@ def close_open_positions_and_cancel_open_orders(
     with raises(Exception) as e:
         orders: dict[str, Any] = io.orders()
         for order in orders["orders"]:
-            if order["status"] == io.ORDER_STATUS_OPEN:
+            if order["status"] == c2i.ORDER_STATUS_OPEN:
                 io.cancel_order(order_id=order["order_id"])
         assert "No Orders Found" in str(e.value)
 
@@ -198,7 +198,9 @@ def close_open_positions_and_cancel_open_orders(
                     tradingsymbol=position["tradingsymbol"],
                 )
                 assert isinstance(placed_order, dict)
-                assert placed_order["order_status"] == io.ORDER_STATUS_COMPLETE
+                assert (
+                    placed_order["order_status"] == c2i.ORDER_STATUS_COMPLETE
+                )
             elif int(position["day_sell_qty"]) > 0:
                 placed_order = custom_order_placement(
                     c2i=c2i,
@@ -212,7 +214,9 @@ def close_open_positions_and_cancel_open_orders(
                     tradingsymbol=position["tradingsymbol"],
                 )
                 assert isinstance(placed_order, dict)
-                assert placed_order["order_status"] == io.ORDER_STATUS_COMPLETE
+                assert (
+                    placed_order["order_status"] == c2i.ORDER_STATUS_COMPLETE
+                )
         assert "No Positions Found" in str(e.value)
 
 
@@ -306,7 +310,7 @@ def test_modifying_order(
         price="lower_circuit",
     )
     assert isinstance(placed_order, dict)
-    if placed_order["order_status"] == io.ORDER_STATUS_OPEN:
+    if placed_order["order_status"] == c2i.ORDER_STATUS_OPEN:
         order1: dict[str, Any] = io.modify_order(
             exchange=c2i.EXCHANGE_TYPE_NSE,
             order_id=placed_order["order_id"],
@@ -333,7 +337,9 @@ def test_modifying_order(
             assert "No Orders Found" in str(e.value)
 
 
-def test_cancelling_order(io: IntegrateOrders) -> None:
+def test_cancelling_order(
+    c2i: ConnectToIntegrate, io: IntegrateOrders
+) -> None:
     """
     Test cancelling an order.
 
@@ -344,7 +350,7 @@ def test_cancelling_order(io: IntegrateOrders) -> None:
     with raises(Exception) as e:
         orders: dict[str, Any] = io.orders()
         for order in orders["orders"]:
-            if order["status"] == io.ORDER_STATUS_OPEN:
+            if order["status"] == c2i.ORDER_STATUS_OPEN:
                 io.cancel_order(order_id=order["order_id"])
         assert "No Orders Found" in str(e.value)
 
@@ -428,7 +434,7 @@ def test_product_type_conversion(
                 order: dict[str, Any] = io.convert_position_product_type(
                     exchange=position["exchange"],
                     order_type=c2i.ORDER_TYPE_BUY,
-                    prev_product=position["product_type"],
+                    previous_product=position["product_type"],
                     product_type=c2i.PRODUCT_TYPE_CNC,
                     quantity=int(position["day_buy_qty"]),
                     tradingsymbol=position["tradingsymbol"],

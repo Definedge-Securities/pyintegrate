@@ -71,13 +71,6 @@ class IntegrateOrders:
     :type `logging`: `bool`
     """
 
-    ORDER_STATUS_NEW = "NEW"
-    ORDER_STATUS_OPEN = "OPEN"
-    ORDER_STATUS_COMPLETE = "COMPLETE"
-    ORDER_STATUS_CANCELLED = "CANCELED"
-    ORDER_STATUS_REJECTED = "REJECTED"
-    ORDER_STATUS_REPLACED = "REPLACED"
-
     def __init__(
         self,
         connect_to_integrate: ConnectToIntegrate,
@@ -87,12 +80,12 @@ class IntegrateOrders:
 
         self.c2i: ConnectToIntegrate = connect_to_integrate
         self.order_statuses: list[str] = [
-            self.ORDER_STATUS_NEW,
-            self.ORDER_STATUS_OPEN,
-            self.ORDER_STATUS_COMPLETE,
-            self.ORDER_STATUS_CANCELLED,
-            self.ORDER_STATUS_REJECTED,
-            self.ORDER_STATUS_REPLACED,
+            self.c2i.ORDER_STATUS_NEW,
+            self.c2i.ORDER_STATUS_OPEN,
+            self.c2i.ORDER_STATUS_COMPLETE,
+            self.c2i.ORDER_STATUS_CANCELLED,
+            self.c2i.ORDER_STATUS_REJECTED,
+            self.c2i.ORDER_STATUS_REPLACED,
         ]
 
     def place_order(  # noqa: C901
@@ -425,7 +418,7 @@ class IntegrateOrders:
         self,
         exchange: str,
         order_type: str,
-        prev_product: str,
+        previous_product: str,
         product_type: str,
         quantity: int,
         tradingsymbol: str,
@@ -436,7 +429,7 @@ class IntegrateOrders:
 
         :param `exchange`: Exchange in which security is listed. Currently NSE, BSE, NFO, CDS, MCX are supported.
         :param `order_type`: Order type. Valid values are BUY, SELL.
-        :param `prev_product`: Previous product type. Valid values are CNC, INTRADAY, NORMAL.
+        :param `previous_product`: Previous product type. Valid values are CNC, INTRADAY, NORMAL.
         :param `product_type`: Product type. Valid values are CNC, INTRADAY, NORMAL.
         :param `quantity`: Quantity to transact.
         :param `tradingsymbol`: Trading symbol of security to transact.
@@ -444,7 +437,7 @@ class IntegrateOrders:
         :type `exchange`: `str`
         :type `order_id`: `str`
         :type `order_type`: `str`
-        :type `prev_product`: `str`
+        :type `previous_product`: `str`
         :type `product_type`: `str`
         :type `quantity`: `int`
         :type `tradingsymbol`: `str`
@@ -460,7 +453,7 @@ class IntegrateOrders:
 
         if (
             product_type not in self.c2i.product_types
-            or prev_product not in self.c2i.product_types
+            or previous_product not in self.c2i.product_types
         ):
             raise ValueError("Invalid product type")
 

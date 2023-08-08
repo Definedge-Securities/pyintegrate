@@ -202,7 +202,7 @@ def test_product_type_conversion(
     order: dict[str, Any] = io.convert_position_product_type(
         exchange=c2i.EXCHANGE_TYPE_NFO,
         order_type=c2i.ORDER_TYPE_SELL,
-        prev_product=c2i.PRODUCT_TYPE_NORMAL,
+        previous_product=c2i.PRODUCT_TYPE_NORMAL,
         product_type=c2i.PRODUCT_TYPE_INTRADAY,
         quantity=50,
         tradingsymbol="NIFTY23FEB23F",

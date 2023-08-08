@@ -11,7 +11,7 @@ We offer resource-based URLs that accept JSON or form-encoded requests. The resp
 
 Installation
 ------------
-Install the Definedge Securities Integrate Python API client
+Install the Definedge Securities Integrate Python API client. For more information, see the `Python API client documentation <https://pyintegrate.readthedocs.io/en/latest/>`__.
 
 - Using pip:
 
