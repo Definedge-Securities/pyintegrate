@@ -2,6 +2,21 @@
 
 
 
+## v1.0.3 (2023-08-08)
+
+### Chore
+
+* chore: fix docstrings, add margins example ([`e84aa3a`](https://github.com/Definedge-Securities/pyintegrate/commit/e84aa3accfe24b647870707a38c5591bfec3aef7))
+
+### Fix
+
+* fix: added examples link in readme and index ([`67e1cf2`](https://github.com/Definedge-Securities/pyintegrate/commit/67e1cf28f336fc45a848b7bb113eeeae2e148e51))
+
+### Unknown
+
+* Merge branch &#39;main&#39; of https://github.com/Definedge-Securities/pyintegrate ([`417dc37`](https://github.com/Definedge-Securities/pyintegrate/commit/417dc37092642ffb1215d83597a8b5b69c403295))
+
+
 ## v1.0.2 (2023-08-04)
 
 ### Fix
