@@ -132,7 +132,9 @@ Simple example to stream live quotes, get order and depth updates:
     # You have to use the callbacks for further management.
     iws.connect()
 
-Check out more examples in the `examples`__ folder.
+Check out more examples in the examples_ folder.
+
+.. _examples: https://github.com/Definedge-Securities/pyintegrate/tree/main/examples
 
 Testing
 -------

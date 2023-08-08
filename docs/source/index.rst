@@ -41,6 +41,8 @@ Simple example to stream live quotes, get order and depth updates:
 .. include:: ../../examples/ws.py
     :literal:
 
+Check out more examples under `Examples <examples.html>`__.
+
 Testing
 -------
 Clone the repository
