@@ -240,11 +240,14 @@ class ConnectToIntegrate:
                 self.set_session_keys(
                     r["uid"], r["actid"], r["api_session_key"], r["susertoken"]
                 )
-                # Get symbols
-                symbols_filename: str = abspath(
-                    join(dirname(__file__), "..", "allmaster.csv")
-                )
-                remove(symbols_filename)
+                try:
+                    # Get symbols
+                    symbols_filename: str = abspath(
+                        join(dirname(__file__), "..", "allmaster.csv")
+                    )
+                    remove(symbols_filename)
+                except FileNotFoundError:
+                    pass
                 next(self.symbols)
             except Exception as e:
                 raise Exception(e)
