@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ###############################################################################
 # MIT License                                                                 #
 ###############################################################################
@@ -21,6 +22,46 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER         #
 # DEALINGS IN THE SOFTWARE.                                                   #
 ###############################################################################
+
+"""
+This module contains the IntegrateData class which is used to connect to
+the Integrate Data API and fetch historical data, quotes and security
+information.
+
+Example:
+
+.. code-block:: python
+
+    from datetime import datetime
+
+    from integrate import ConnectToIntegrate, IntegrateData
+
+    c2i = ConnectToIntegrate()
+    c2i.login(api_token="YOUR_API_TOKEN", api_secret="YOUR_API_SECRET")
+
+    ic = IntegrateData(connect_to_integrate=c2i)
+
+    # Fetch historical data for a symbol
+    historical_data = ic.historical_data(
+        exchange=c2i.EXCHANGE_TYPE_NSE,
+        trading_symbol="ACC-EQ",
+        timeframe=c2i.TIMEFRAME_TYPE_DAY,
+        start=datetime.strptime("300620230915", "%d%m%Y%H%M"),
+        end=datetime.strptime("300620231530", "%d%m%Y%H%M"),
+    )
+
+    # Fetch quotes for a symbol
+    quotes = ic.quotes(
+        exchange=c2i.EXCHANGE_TYPE_NSE,
+        trading_symbol="ACC-EQ",
+    )
+
+    # Fetch security information for a symbol
+    security_information = ic.security_information(
+        exchange=c2i.EXCHANGE_TYPE_NSE,
+        trading_symbol="ACC-EQ",
+    )
+"""
 
 from datetime import datetime
 from logging import DEBUG, Logger, getLogger

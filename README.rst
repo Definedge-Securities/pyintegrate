@@ -22,7 +22,7 @@ Install the Definedge Securities Integrate Python API client
 - or Using poetry:
 
 .. code:: console
-    
+
         poetry add pyintegrate
 
 Usage
@@ -42,15 +42,12 @@ Simple example to place an order and get the order book:
 
     # Initialise the connection and login.
     conn = ConnectToIntegrate()
-    conn.login(  # nosec: B106
+    conn.login(
         api_token="YOUR_API_TOKEN",
         api_secret="YOUR_API_SECRET",
     )
 
     io = IntegrateOrders(conn)
-
-    # Get account balance and cash margin.
-    info(io.limits())
 
     try:
         order: dict[str, Any] = io.place_order(
@@ -85,7 +82,7 @@ Simple example to stream live quotes, get order and depth updates:
 
     # Initialise the connection and login.
     conn = ConnectToIntegrate()
-    conn.login(  # nosec: B106
+    conn.login(
         api_token="YOUR_API_TOKEN",
         api_secret="YOUR_API_SECRET",
     )
@@ -134,6 +131,8 @@ Simple example to stream live quotes, get order and depth updates:
     # Blocking WebSocket connection below. Nothing after this will run.
     # You have to use the callbacks for further management.
     iws.connect()
+
+Check out more examples in the `examples`__ folder.
 
 Testing
 -------

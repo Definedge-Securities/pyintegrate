@@ -9,12 +9,12 @@ repos:
       - id: check-json
       - id: check-merge-conflict
       - id: check-toml
-      - id: check-xml
       - id: check-yaml
       - id: debug-statements
       - id: end-of-file-fixer
       - id: fix-encoding-pragma
       - id: name-tests-test
+        exclude: ^tests/responses_helper.py$
       - id: trailing-whitespace
 
   - repo: https://github.com/PyCQA/bandit
@@ -45,7 +45,7 @@ repos:
     rev: 1.5.0 # docstring coverage
     hooks:
       - id: interrogate
-        args: ['--quiet', '--fail-under=95']
+        args: ['-c', 'pyproject.toml']
 
   - repo: https://github.com/commitizen-tools/commitizen
     rev: 3.6.0 # conventional commits

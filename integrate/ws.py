@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ###############################################################################
 # MIT License                                                                 #
 ###############################################################################
@@ -21,6 +22,60 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER         #
 # DEALINGS IN THE SOFTWARE.                                                   #
 ###############################################################################
+
+"""
+This module contains the IntegrateWebSocket class which is used to
+connect to the Integrate WebSocket API and subscribe to ticks, order
+updates and bid-ask depth updates.
+
+Example:
+
+.. code-block:: python
+
+    from integrate import ConnectToIntegrate, IntegrateWebSocket
+
+    # Create a ConnectToIntegrate object
+    c2i = ConnectToIntegrate()
+
+    # Login to Integrate
+    c2i.login(api_token="YOUR_API_TOKEN", api_secret="YOUR_API_SECRET")
+
+    # Create an IntegrateWebSocket object
+    iws = IntegrateWebSocket(c2i)
+
+    # Connect to Integrate WebSocket server
+    iws.connect()
+
+    # Check if WebSocket connection is established
+    iws.is_connected()
+
+    # Subscribe to ticks
+    iws.subscribe(iws.c2i.SUBSCRIPTION_TYPE_TICK)
+
+    # Subscribe to order updates
+    iws.subscribe(iws.c2i.SUBSCRIPTION_TYPE_ORDER)
+
+    # Subscribe to bid-ask depth updates
+    iws.subscribe(iws.c2i.SUBSCRIPTION_TYPE_DEPTH)
+
+    # Unsubscribe from ticks
+    iws.unsubscribe(iws.c2i.SUBSCRIPTION_TYPE_TICK)
+
+    # Unsubscribe from order updates
+    iws.unsubscribe(iws.c2i.SUBSCRIPTION_TYPE_ORDER)
+
+    # Unsubscribe from bid-ask depth updates
+    iws.unsubscribe(iws.c2i.SUBSCRIPTION_TYPE_DEPTH)
+
+    # Resubscribe to all current subscribed tokens
+    iws.resubscribe()
+
+    # Stop reconnecting
+    iws.stop_retry()
+
+    # Stop the event loop
+    iws.stop()
+"""
 
 from __future__ import annotations
 

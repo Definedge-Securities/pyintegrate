@@ -22,7 +22,7 @@ Install the Definedge Securities Integrate Python API client
 - or Using poetry:
 
 .. code:: console
-    
+
         poetry add pyintegrate
 
 Usage
@@ -81,4 +81,3 @@ OR you can store the session keys and use them for subsequent runs as below
 
     examples
     integrate
-    

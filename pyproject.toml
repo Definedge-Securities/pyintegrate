@@ -81,6 +81,27 @@ line_length = 79
 skip_gitignore = true
 skip_glob = [".git/*", ".venv/*", "venv/*", "docs/*", "build/*", "dist/*"]
 
+[tool.interrogate]
+ignore-init-method = true
+ignore-init-module = true
+ignore-magic = true
+ignore-semiprivate = false
+ignore-private = false
+ignore-property-decorators = false
+ignore-module = false
+ignore-nested-functions = false
+ignore-nested-classes = true
+ignore-setters = false
+fail-under = 95
+exclude = ["setup.py", "docs", "build"]
+ignore-regex = ["^get$", "^mock_.*", ".*BaseClass.*"]
+# possible values: 0 (minimal output), 1 (-v), 2 (-vv)
+verbose = 0
+quiet = true
+whitelist-regex = []
+color = true
+omit-covered-files = true
+
 [tool.mypy]
 no_site_packages = true
 check_untyped_defs = true

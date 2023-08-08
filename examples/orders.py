@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ###############################################################################
 # MIT License                                                                 #
 ###############################################################################
@@ -22,32 +23,70 @@
 # DEALINGS IN THE SOFTWARE.                                                   #
 ###############################################################################
 
+"""
+This example shows how to use the IntegrateOrders class to connect to
+the Integrate Orders API and place a market order, get an order's status
+using order_id and get the order book. This example also shows how to
+login to Integrate and save the session keys in a .env file, so that
+you don't have to login again and again.
+"""
+
 from logging import INFO, basicConfig, info
+from os import environ
 from typing import Any
+
+from dotenv import (  # pip install python-dotenv
+    find_dotenv,
+    load_dotenv,
+    set_key,
+)
 
 from integrate import ConnectToIntegrate, IntegrateOrders
 
 basicConfig(level=INFO)
+dotenv_file: str = find_dotenv()
+load_dotenv(dotenv_file)
 
 
 def main() -> None:
-    # Initialise the connection and login.
+    """
+    Main function
+    """
+    try:
+        # Get the API token and secret from environment variables.
+        api_token: str = environ["INTEGRATE_API_TOKEN"]
+        api_secret: str = environ["INTEGRATE_API_SECRET"]
+    except KeyError:
+        raise KeyError(
+            "Please set INTEGRATE_API_TOKEN and INTEGRATE_API_SECRET in .env file."
+        )
+
+    # Initialise the connection.
     conn = ConnectToIntegrate()
-    conn.login(  # nosec: B106
-        api_token="YOUR_API_TOKEN",
-        api_secret="YOUR_API_SECRET",
-    )
-
-    # Your can access the session keys from a logged in session as below
-    # info(conn.get_session_keys())
-
-    # If you have stored the session keys, you can directly set the session keys as below
-    # conn.set_session_keys(
-    #     "YOUR_UID",
-    #     "YOUR_ACTID",
-    #     "YOUR_API_SESSION_KEY",
-    #     "YOUR_WS_SESSION_KEY",
-    # )
+    # Login to Integrate.
+    try:
+        uid: str = environ["INTEGRATE_UID"]
+        actid: str = environ["INTEGRATE_ACTID"]
+        api_session_key: str = environ["INTEGRATE_API_SESSION_KEY"]
+        ws_session_key: str = environ["INTEGRATE_WS_SESSION_KEY"]
+        conn.set_session_keys(uid, actid, api_session_key, ws_session_key)
+        # Please note that the session keys are valid for 24 hours. After that you
+        # will have to login again. The logic to handle this is left to the user.
+    except KeyError:
+        conn.login(
+            api_token=api_token,
+            api_secret=api_secret,
+        )
+        (uid, actid, api_session_key, ws_session_key) = conn.get_session_keys()
+        environ["INTEGRATE_UID"] = uid
+        environ["INTEGRATE_ACTID"] = actid
+        environ["INTEGRATE_API_SESSION_KEY"] = api_session_key
+        environ["INTEGRATE_WS_SESSION_KEY"] = ws_session_key
+        set_key(dotenv_file, "INTEGRATE_UID", uid)
+        set_key(dotenv_file, "INTEGRATE_ACTID", actid)
+        set_key(dotenv_file, "INTEGRATE_API_SESSION_KEY", api_session_key)
+        set_key(dotenv_file, "INTEGRATE_WS_SESSION_KEY", ws_session_key)
+        info("Login successful.")
 
     io = IntegrateOrders(conn)
 

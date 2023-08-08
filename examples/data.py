@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ###############################################################################
 # MIT License                                                                 #
 ###############################################################################
@@ -22,6 +23,12 @@
 # DEALINGS IN THE SOFTWARE.                                                   #
 ###############################################################################
 
+"""
+This example shows how to use the IntegrateData class to connect to
+the Integrate Data API and fetch quotes, security information and
+historical data for a symbol.
+"""
+
 from datetime import datetime, timedelta
 from logging import INFO, basicConfig, info
 from typing import Any, Generator
@@ -32,12 +39,16 @@ basicConfig(level=INFO)
 
 
 def main() -> None:
+    """
+    Main function
+    """
     # Initialise the connection and login.
     conn = ConnectToIntegrate()
     conn.login(  # nosec: B106
         api_token="YOUR_API_TOKEN",
         api_secret="YOUR_API_SECRET",
     )
+
     ic = IntegrateData(conn)
 
     # Get quote for NSE:SBIN-EQ

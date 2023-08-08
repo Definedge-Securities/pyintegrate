@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ###############################################################################
 # MIT License                                                                 #
 ###############################################################################
@@ -22,6 +23,12 @@
 # DEALINGS IN THE SOFTWARE.                                                   #
 ###############################################################################
 
+"""
+This example shows how to use the IntegrateWebSocket class to connect to
+the Integrate WebSocket API and subscribe to ticks, order updates and
+bid-ask depth updates in a daemonized process.
+"""
+
 from logging import INFO, basicConfig, info
 
 from integrate import ConnectToIntegrate, IntegrateWebSocket
@@ -29,9 +36,11 @@ from integrate import ConnectToIntegrate, IntegrateWebSocket
 basicConfig(level=INFO)
 
 
-# Callback called when the WebSocket connection is established
-# and the login is successful.
 def on_login(iws: IntegrateWebSocket) -> None:
+    """
+    Callback called when the WebSocket connection is established
+    and the login is successful.
+    """
     # Subscribe to a list of symbols (TCS and TATAMOTORS here).
     tokens: list[tuple[str, str]] = [
         (iws.c2i.EXCHANGE_TYPE_NSE, "11536"),
@@ -42,28 +51,38 @@ def on_login(iws: IntegrateWebSocket) -> None:
     iws.subscribe(iws.c2i.SUBSCRIPTION_TYPE_DEPTH, tokens)
 
 
-# Callback to receive ticks.
 def on_tick_update(iws: IntegrateWebSocket, tick: dict[str, str]) -> None:
-    # Callback to receive ticks.
+    """
+    Callback called when a tick update is received.
+    """
     info(f"Ticks: {tick}")
 
 
-# Callback to receive order updates.
 def on_order_update(iws: IntegrateWebSocket, order: dict[str, str]) -> None:
+    """
+    Callback called when an order update is received.
+    """
     info(f"Order update : {order}")
 
 
-# Callback to receive bid-ask depth updates.
 def on_depth_update(iws: IntegrateWebSocket, depth: dict[str, str]) -> None:
+    """
+    Callback called when a bid-ask depth update is received.
+    """
     info(f"Depth update : {depth}")
 
 
-# Callback to receive acknowledgements of the requests sent.
 def on_acknowledgement(iws: IntegrateWebSocket, ack: dict[str, str]) -> None:
+    """
+    Callback called when an acknowledgement is received.
+    """
     info(f"Ack : {ack}")
 
 
 def main() -> None:
+    """
+    Main function.
+    """
     # Initialise the connection and login.
     conn = ConnectToIntegrate()
     conn.login(  # nosec: B106

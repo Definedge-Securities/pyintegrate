@@ -8,6 +8,13 @@ Basic example showing order placement and getting order status from orderbook.
 .. include:: ../../examples/orders.py
    :literal:
 
+Margins
+------
+Basic example showing getting margin requirements for a basket of orders.
+
+.. include:: ../../examples/margins.py
+   :literal:
+
 Data
 ------
 Basic example showing how to get historical data, quotes and security information.

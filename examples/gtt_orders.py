@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ###############################################################################
 # MIT License                                                                 #
 ###############################################################################
@@ -22,6 +23,11 @@
 # DEALINGS IN THE SOFTWARE.                                                   #
 ###############################################################################
 
+"""
+This example shows how to use the IntegrateOrders class to connect to
+the Integrate Orders API and place a GTT order and get the GTT order book.
+"""
+
 from logging import INFO, basicConfig, info
 from typing import Any
 
@@ -31,6 +37,9 @@ basicConfig(level=INFO)
 
 
 def main() -> None:
+    """
+    Main function
+    """
     # Initialise the connection and login.
     conn = ConnectToIntegrate()
     conn.login(  # nosec: B106

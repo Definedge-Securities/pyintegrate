@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ###############################################################################
 # MIT License                                                                 #
 ###############################################################################
@@ -22,6 +23,13 @@
 # DEALINGS IN THE SOFTWARE.                                                   #
 ###############################################################################
 
+"""
+This example shows how to use the IntegrateWebSocket class to connect to
+the Integrate WebSocket API and subscribe to ticks and bid-ask depth updates.
+The websocket connection is blocking, so you have to use the callbacks to
+manage the connection.
+"""
+
 from logging import INFO, basicConfig, info
 from typing import Union
 
@@ -45,8 +53,10 @@ symbols: list[tuple[str, str]] = [
 tokens: list[tuple[str, str]] = []
 
 
-# Get the token for a symbol from the symbols file.
 def get_token_for_symbol(exchange: str, symbol: str) -> tuple[str, str]:
+    """
+    Get the token for a symbol from the symbols file.
+    """
     if exchange not in conn.exchange_types:
         raise ValueError("Invalid exchange type")
 
@@ -64,8 +74,11 @@ def get_token_for_symbol(exchange: str, symbol: str) -> tuple[str, str]:
         raise Exception(f"Token not found for {symbol} in symbols file")
 
 
-# Callback called when the WebSocket connection is established and the login is successful.
 def on_login(iws: IntegrateWebSocket) -> None:
+    """
+    Callback called when the WebSocket connection is established and the login is successful.
+    """
+
     for exchange, symbol in symbols:
         tokens.append(get_token_for_symbol(exchange, symbol))
     # Subscribe to a list of symbols. You can have different lists for different subscriptions.
@@ -73,18 +86,24 @@ def on_login(iws: IntegrateWebSocket) -> None:
     iws.subscribe(conn.SUBSCRIPTION_TYPE_DEPTH, tokens)
 
 
-# Callback to receive ticks.
 def on_tick_update(iws: IntegrateWebSocket, tick: dict[str, str]) -> None:
-    # Callback to receive ticks.
+    """
+    Callback to receive tick updates.
+    """
     info(f"Ticks: {tick}")
 
 
-# Callback to receive bid-ask depth updates.
 def on_depth_update(iws: IntegrateWebSocket, depth: dict[str, str]) -> None:
+    """
+    Callback to receive bid-ask depth updates.
+    """
     info(f"Depth update : {depth}")
 
 
 def main() -> None:
+    """
+    Main function
+    """
     iws = IntegrateWebSocket(conn)
 
     # Assign the callbacks.

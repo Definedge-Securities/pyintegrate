@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ###############################################################################
 # MIT License                                                                 #
 ###############################################################################
@@ -21,6 +22,27 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER         #
 # DEALINGS IN THE SOFTWARE.                                                   #
 ###############################################################################
+
+"""
+This module contains the ConnectToIntegrate class which is used to connect to
+the Integrate API and login, get symbols and send requests.
+
+Example:
+
+.. code-block:: python
+
+    from integrate import ConnectToIntegrate
+
+    # Create a ConnectToIntegrate object
+    c2i = ConnectToIntegrate()
+
+    # Login to Integrate
+    c2i.login(api_token="YOUR_API_TOKEN", api_secret="YOUR_API_SECRET")
+
+    # Get symbols
+    for symbol in c2i.symbols:
+        print(symbol)
+"""
 
 from csv import reader
 from hashlib import sha256

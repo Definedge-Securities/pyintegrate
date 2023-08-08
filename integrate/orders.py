@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ###############################################################################
 # MIT License                                                                 #
 ###############################################################################
@@ -21,6 +22,35 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER         #
 # DEALINGS IN THE SOFTWARE.                                                   #
 ###############################################################################
+
+"""
+This module contains the IntegrateOrders class which is used to connect to
+the Integrate Orders API and place orders, modify orders, cancel orders,
+get order book, get order status, get trade book, get positions, convert
+product type, place GTT order, modify GTT order, cancel GTT order.
+
+Example:
+
+.. code-block:: python
+
+    from integrate import ConnectToIntegrate, IntegrateOrders
+
+    c2i = ConnectToIntegrate()
+    c2i.login(api_token="YOUR_API_TOKEN", api_secret="YOUR_API_SECRET")
+
+    io = IntegrateOrders(c2i)
+    io.place_order(
+         exchange="NSE",
+         order_type="BUY",
+         price=0,
+         price_type="MARKET",
+         product_type="INTRADAY",
+         quantity=1,
+         tradingsymbol="ACC-EQ",
+    )
+    io.order(order_id="210630000000000")
+    io.orders()
+"""
 
 from logging import DEBUG, Logger, getLogger
 from typing import Any, Union
