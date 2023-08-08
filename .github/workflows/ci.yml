@@ -65,10 +65,6 @@ jobs:
         if: steps.release.outputs.released == 'true'
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          verbose: true
-          # user: __token__
-          # password: ${{ secrets.PYPI_TOKEN }}
-          # password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository-url: https://test.pypi.org/legacy/
 
       - name: Publish package distributions to GitHub Releases
