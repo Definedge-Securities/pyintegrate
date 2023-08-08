@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyintegrate"
-version = "1.0.5"
+version = "1.0.6"
 description = "Definedge Securities Integrate API Python Client"
 authors = ["Definedge Securities <integrate@definedge.com>"]
 homepage = "https://www.definedgesecurities.com/api-documentation/"

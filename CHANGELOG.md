@@ -2,6 +2,13 @@
 
 
 
+## v1.0.6 (2023-08-08)
+
+### Fix
+
+* fix: test ci.yml ([`a643fc0`](https://github.com/Definedge-Securities/pyintegrate/commit/a643fc0c0743f6ae8fa416ace0405fb3166a8ec0))
+
+
 ## v1.0.5 (2023-08-08)
 
 ### Fix
