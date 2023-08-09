@@ -2,6 +2,15 @@
 
 
 
+## v1.0.9 (2023-08-09)
+
+### Fix
+
+* fix: modified ws.py
+
+Renamed variable token to t to resolve conflict ([`5014836`](https://github.com/Definedge-Securities/pyintegrate/commit/50148363f3bfc50d461e42a1a1ad471ad2ca6096))
+
+
 ## v1.0.8 (2023-08-09)
 
 ### Fix
