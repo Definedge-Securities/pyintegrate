@@ -2,6 +2,37 @@
 
 
 
+## v1.0.17 (2023-08-09)
+
+### Chore
+
+* chore: modified PATH env ([`4b72339`](https://github.com/Definedge-Securities/pyintegrate/commit/4b723396ac930905363466d6fa5d846542e5092d))
+
+* chore: removed macos ([`f60195e`](https://github.com/Definedge-Securities/pyintegrate/commit/f60195e72691930cc7d51c5cd1afba1e260e4916))
+
+* chore: testing caching in GH Actions ([`74ae5ea`](https://github.com/Definedge-Securities/pyintegrate/commit/74ae5ea25e0e591a4ae4fa0d12506a343bb9ae88))
+
+### Ci
+
+* ci: checking with master branch
+
+removed python install, reverted poetry install in pyproject.toml ([`cb8a701`](https://github.com/Definedge-Securities/pyintegrate/commit/cb8a7011219f512ebe3d033431f1d56041294e25))
+
+* ci: reverting from master to 8.0.4 ([`875f078`](https://github.com/Definedge-Securities/pyintegrate/commit/875f07851d7d4575408da553178af6c4ac68f62b))
+
+* ci: set PATH explicitly for pysemrel ([`09833c4`](https://github.com/Definedge-Securities/pyintegrate/commit/09833c48bb26a8fcc9cc21fdbbf8078a8c2ea114))
+
+* ci: test without poetry binary cache ([`6adc528`](https://github.com/Definedge-Securities/pyintegrate/commit/6adc528f280ece2d4cefcec6f020944c2c6234e8))
+
+* ci: testing poetry and dependencies caching ([`90c9e30`](https://github.com/Definedge-Securities/pyintegrate/commit/90c9e3006ed755b0f93681a79962b493d06d589e))
+
+### Fix
+
+* fix: removed GITHUB_API_URL from env
+
+Removed env variable as can&#39;t change the above value ([`3832296`](https://github.com/Definedge-Securities/pyintegrate/commit/3832296d4c8aa08e530bfe0aaf3d6b8c3f178783))
+
+
 ## v1.0.16 (2023-08-09)
 
 ### Chore
