@@ -2,6 +2,15 @@
 
 
 
+## v1.0.10 (2023-08-09)
+
+### Fix
+
+* fix: update ws.py
+
+Close websocket connection in case token is invalid ([`3d3822a`](https://github.com/Definedge-Securities/pyintegrate/commit/3d3822a541fc40b3c16d228d68d2a674cb286a18))
+
+
 ## v1.0.9 (2023-08-09)
 
 ### Fix
