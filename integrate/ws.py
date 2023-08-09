@@ -641,7 +641,7 @@ class IntegrateWebSocket:
             if exchange not in self.c2i.exchange_types:
                 raise ValueError("Invalid exchange type")
 
-            token: Union[str, None] = next(
+            t: Union[str, None] = next(
                 (
                     i["token"]
                     for i in self.c2i.symbols
@@ -649,7 +649,7 @@ class IntegrateWebSocket:
                 ),
                 None,
             )
-            if not token:
+            if not t:
                 raise Exception(
                     f"{token} in {exchange} not found in symbols file"
                 )
