@@ -2,6 +2,13 @@
 
 
 
+## v1.0.7 (2023-08-09)
+
+### Fix
+
+* fix: update ws.py with order callback in README ([`72088f1`](https://github.com/Definedge-Securities/pyintegrate/commit/72088f159fab7ef2ed9031530d8f7b2a1a814f1d))
+
+
 ## v1.0.6 (2023-08-08)
 
 ### Fix
