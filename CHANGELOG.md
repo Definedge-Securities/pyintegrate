@@ -2,6 +2,17 @@
 
 
 
+## v1.0.16 (2023-08-09)
+
+### Chore
+
+* chore: testing cache and GH release ([`63b80fd`](https://github.com/Definedge-Securities/pyintegrate/commit/63b80fd7cb04b01926ee3766a02f611113ed5f37))
+
+### Fix
+
+* fix: reverted poetry cache actions ([`2523de1`](https://github.com/Definedge-Securities/pyintegrate/commit/2523de17234e1bfcba076efc566a40feb3c9c29f))
+
+
 ## v1.0.15 (2023-08-09)
 
 ### Fix
