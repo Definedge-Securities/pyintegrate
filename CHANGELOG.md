@@ -2,6 +2,15 @@
 
 
 
+## v1.0.12 (2023-08-09)
+
+### Fix
+
+* fix: update ws.py
+
+Changed code 1001 to 1000 during close ([`6f37e17`](https://github.com/Definedge-Securities/pyintegrate/commit/6f37e17faf498ff27542ee22caf6aff1a0f2db62))
+
+
 ## v1.0.11 (2023-08-09)
 
 ### Fix
