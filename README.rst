@@ -124,9 +124,11 @@ Simple example to stream live quotes, get order and depth updates:
     iws = IntegrateWebSocket(conn)
 
     # Assign the callbacks.
-    iws.on_login = on_login  # type: ignore
-    iws.on_tick_update = on_tick_update  # type: ignore
-    iws.on_depth_update = on_depth_update  # type: ignore
+    iws.on_login = on_login
+    iws.on_tick_update = on_tick_update
+    iws.on_order_update = on_order_update
+    iws.on_depth_update = on_depth_update
+    iws.on_acknowledgement = on_acknowledgement
 
     # Blocking WebSocket connection below. Nothing after this will run.
     # You have to use the callbacks for further management.
