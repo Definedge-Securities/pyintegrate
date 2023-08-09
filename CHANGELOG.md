@@ -2,6 +2,15 @@
 
 
 
+## v1.0.11 (2023-08-09)
+
+### Fix
+
+* fix: update ws.py
+
+Update code to 1001 to close connection ([`8d27866`](https://github.com/Definedge-Securities/pyintegrate/commit/8d27866b1f28dcb8afad37f7efc791f95d8d183a))
+
+
 ## v1.0.10 (2023-08-09)
 
 ### Fix
