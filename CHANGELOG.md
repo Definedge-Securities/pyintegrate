@@ -2,6 +2,15 @@
 
 
 
+## v1.0.14 (2023-08-09)
+
+### Fix
+
+* fix: update README
+
+Fixed line 154 - Warning - Title underline too short. ([`6f522ca`](https://github.com/Definedge-Securities/pyintegrate/commit/6f522ca83f723851d8fc98720d3d91873d64c506))
+
+
 ## v1.0.13 (2023-08-09)
 
 ### Fix
