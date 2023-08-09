@@ -151,5 +151,5 @@ Check out more examples in the examples_ folder.
 .. _examples: https://github.com/Definedge-Securities/pyintegrate/tree/main/examples
 
 Contributing_
-------------
+-------------
 .. _Contributing: https://github.com/Definedge-Securities/pyintegrate/tree/main/CONTRIBUTING.md
