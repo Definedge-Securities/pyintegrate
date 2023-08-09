@@ -28,17 +28,20 @@ jobs:
           path: ~/.local # the path depends on the OS
           key: poetry # increment to reset cache
       - name: Install poetry
-        if: steps.cached-poetry.outputs.cache-hit != 'true'
         uses: abatilo/actions-poetry@v2
         with:
           poetry-version: 1.5.1
-      - name: Restore cached dependencies
-        uses: actions/cache@v3
+      - name: Setup a local virtual environment (if no poetry.toml file)
+        run: |
+          poetry config virtualenvs.create true --local
+          poetry config virtualenvs.in-project true --local
+      - uses: actions/cache@v3
+        name: Define a cache for the virtual environment based on the dependencies lock file
         with:
-          path: ~/.cache/pypoetry
-          key: ${{ runner.os }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          path: ./.venv
+          key: venv-${{ hashFiles('poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-poetry-
+            venv-
       - name: Install the project dependencies
         run: poetry install
       - name: Run Tests
