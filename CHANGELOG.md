@@ -2,6 +2,15 @@
 
 
 
+## v1.0.15 (2023-08-09)
+
+### Fix
+
+* fix: update readme and ws.py
+
+Fix stop method to close the connection cleanly and stop reactor ([`63ff3d1`](https://github.com/Definedge-Securities/pyintegrate/commit/63ff3d1c21e6b3933abfad38f16d956983cfc12a))
+
+
 ## v1.0.14 (2023-08-09)
 
 ### Fix
