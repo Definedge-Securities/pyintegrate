@@ -2,6 +2,17 @@
 
 
 
+## v1.0.13 (2023-08-09)
+
+### Fix
+
+* fix: update docs and examples
+
+1. Moved contributing readme to CONTRIBUTING.md
+2. Updated README with ws example
+3. Added on_exception callback for Python exceptions ([`fddec7b`](https://github.com/Definedge-Securities/pyintegrate/commit/fddec7b408b03e156dedeb484ef206bb07b85ac1))
+
+
 ## v1.0.12 (2023-08-09)
 
 ### Fix
