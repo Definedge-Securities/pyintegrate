@@ -2,6 +2,16 @@
 
 
 
+## v1.0.8 (2023-08-09)
+
+### Fix
+
+* fix: update README and ws
+
+1. Remove typing.Union in websocket example in README
+2. Added a method to check token validity in ws.py ([`d1c1a2b`](https://github.com/Definedge-Securities/pyintegrate/commit/d1c1a2b6fbf2cc981f4ea0676da2524921e1ff61))
+
+
 ## v1.0.7 (2023-08-09)
 
 ### Fix
