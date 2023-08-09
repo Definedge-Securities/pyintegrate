@@ -110,7 +110,7 @@ exclude = ["__pycache__", ".git", ".mypy_cache", ".pytest_cache", ".vscode", ".v
 [tool.semantic_release]
 version_variables = ["integrate/__init__.py:__version__", "docs/source/conf.py:release"]
 version_toml = ["pyproject.toml:tool.poetry.version"]
-build_command = "curl -sSL https://install.python-poetry.org | python - && export PATH=\"/github/home/.local/bin:$PATH\" && poetry install && poetry build"
+build_command = "poetry build"
 
 [tool.coverage.run]
 branch = true
