@@ -92,7 +92,7 @@ jobs:
         id: release
         uses: python-semantic-release/python-semantic-release@master
         env:
-          PATH: ${{ env.PATH }}:~/.local/bin
+          PATH: '$PATH:~/.local/bin'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish package distributions to PyPI
