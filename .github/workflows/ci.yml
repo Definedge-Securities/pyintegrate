@@ -9,7 +9,7 @@ jobs:
       max-parallel: 3
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         python-version: ['3.9', '3.10', '3.11']
     runs-on: ${{ matrix.os }}
     steps:
@@ -18,6 +18,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Python ${{ matrix.python-version }}
+        id: setup-python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
@@ -26,25 +27,23 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.local # the path depends on the OS
-          key: poetry # increment to reset cache
-      - name: Install poetry
-        if: steps.cached-poetry.outputs.cache-hit != 'true'
-        uses: abatilo/actions-poetry@v2
+          key: poetry-0 # increment to reset cache
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
         with:
-          poetry-version: 1.5.1
-      - name: Setup a local virtual environment (if no poetry.toml file)
-        run: |
-          poetry config virtualenvs.create true --local
-          poetry config virtualenvs.in-project true --local
-      - uses: actions/cache@v3
-        name: Load virtual environment based on the dependencies lock file
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+      - name: Load cached venv if cache exists
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
         with:
-          path: ./.venv
-          key: venv-${{ hashFiles('poetry.lock') }}
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
           restore-keys: |
-            venv-
-      - name: Install the project dependencies
-        run: poetry install
+            venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-
+      - name: Install dependencies if cache does not exist
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction
       - name: Run Tests
         run: poetry run pytest -s tests/unit
 
