@@ -372,6 +372,7 @@ class IntegrateWebSocket:
     - :py:meth:`IntegrateWebSocket.on_error`: Called when an error occurs.
     - :py:meth:`IntegrateWebSocket.on_reconnection`: Called when a reconnection attempt is made.
     - :py:meth:`IntegrateWebSocket.on_stop_reconnection`: Called when maxRetries have been made.
+    - :py:meth:`IntegrateWebSocket.on_exception`: Called when a Python exception occurs.
     - :py:meth:`IntegrateWebSocket.on_tick_update`: Called when a tick is received.
     - :py:meth:`IntegrateWebSocket.on_order_update`: Called when an order update is received.
     - :py:meth:`IntegrateWebSocket.on_depth_update`: Called when a bid-ask depth update is received.
@@ -475,13 +476,16 @@ class IntegrateWebSocket:
         opts["timeout"] = self._connect_timeout
         connectWS(**opts)
 
-        # Run when reactor is not running
-        if not running:
-            if daemonize:
-                # Signals are not allowed in non main thread by twisted so suppress it.
-                Thread(target=run, daemon=True, kwargs={"installSignalHandlers": False}).start()  # type: ignore
-            else:
-                run()
+        try:
+            # Run when reactor is not running
+            if not running:
+                if daemonize:
+                    # Signals are not allowed in non main thread by twisted so suppress it.
+                    Thread(target=run, daemon=True, kwargs={"installSignalHandlers": False}).start()  # type: ignore
+                else:
+                    run()
+        except Exception as e:
+            self._on_exception(e)
 
     def is_connected(self) -> bool:
         """
@@ -516,8 +520,10 @@ class IntegrateWebSocket:
                 ).encode('utf-8')
             )
         else:
-            raise Exception(
-                "Not connected to Definedge Securities Integrate WebSocket server"
+            self._on_exception(
+                Exception(
+                    f"Not connected to Definedge Securities Integrate WebSocket server: {self._protocol.state if self._protocol else None}"
+                )
             )
 
     def subscribe(
@@ -543,7 +549,9 @@ class IntegrateWebSocket:
         elif subscription_type == self.c2i.SUBSCRIPTION_TYPE_DEPTH:
             t = "d"
         else:
-            raise ValueError("Invalid subscription type")
+            self._on_exception(
+                ValueError(f"Invalid subscription type: {subscription_type}")
+            )
 
         try:
             if (
@@ -557,11 +565,11 @@ class IntegrateWebSocket:
                 self.subscriptions[subscription_type].add(self.c2i.actid)
                 self._protocol.sendMessage(dumps({"t": t, "actid": self.c2i.actid}, ensure_ascii=False).encode('utf-8'))  # type: ignore
         except Exception as e:
-            self._close(
-                code=1000,
-                reason=f"Error subscribing tokens for {subscription_type}: {e}",
+            self._on_exception(
+                Exception(
+                    f"Error subscribing tokens for {subscription_type}: {e}"
+                )
             )
-            raise
 
     def unsubscribe(
         self,
@@ -586,7 +594,11 @@ class IntegrateWebSocket:
         elif unsubscription_type == self.c2i.SUBSCRIPTION_TYPE_DEPTH:
             t = "ud"
         else:
-            raise ValueError("Invalid subscription type")
+            self._on_exception(
+                ValueError(
+                    f"Invalid unsubscription type: {unsubscription_type}"
+                )
+            )
 
         try:
             if (
@@ -594,22 +606,19 @@ class IntegrateWebSocket:
                 or unsubscription_type == self.c2i.SUBSCRIPTION_TYPE_DEPTH
             ) and tokens:
                 self._protocol.sendMessage(dumps({"t": t, "k": "#".join(tokens)}, ensure_ascii=False).encode('utf-8'))  # type: ignore
-                try:
-                    for token in tokens:
-                        self.subscriptions[unsubscription_type].remove(
-                            "|".join(token)
-                        )
-                except KeyError:
-                    raise
+                for token in tokens:
+                    self.subscriptions[unsubscription_type].remove(
+                        "|".join(token)
+                    )
             else:
                 self._protocol.sendMessage(dumps({"t": t, "actid": self.c2i.actid}, ensure_ascii=False).encode('utf-8'))  # type: ignore
                 self.subscriptions[unsubscription_type].remove(self.c2i.actid)
         except Exception as e:
-            self._close(
-                code=1000,
-                reason=f"Error unsubscribing tokens for {unsubscription_type}: {e}",
+            self._on_exception(
+                Exception(
+                    f"Error unsubscribing tokens for {unsubscription_type}: {e}"
+                )
             )
-            raise
 
     def resubscribe(self) -> None:
         """
@@ -639,7 +648,9 @@ class IntegrateWebSocket:
         """
         for exchange, token in tokens:
             if exchange not in self.c2i.exchange_types:
-                raise ValueError("Invalid exchange type")
+                self._on_exception(
+                    ValueError(f"Invalid exchange type: {exchange}")
+                )
 
             t: Union[str, None] = next(
                 (
@@ -650,12 +661,10 @@ class IntegrateWebSocket:
                 None,
             )
             if not t:
-                self._close(
-                    code=1000,
-                    reason=f"{token} in {exchange} not found in symbols file",
-                )
-                raise Exception(
-                    f"{token} in {exchange} not found in symbols file"
+                self._on_exception(
+                    Exception(
+                        f"{token} in {exchange} not found in symbols file"
+                    )
                 )
 
     def close(
@@ -782,6 +791,18 @@ class IntegrateWebSocket:
 
         :param `iws`: The `IntegrateWebSocket` instance.
         :type `iws`: `IntegrateWebSocket`
+        :returns: `None`
+        """
+        pass
+
+    def on_exception(self, iws: IntegrateWebSocket, e: Exception) -> None:
+        """
+        Callback function called when a Python exception occurs.
+
+        :param `iws`: The `IntegrateWebSocket` instance.
+        :param `e`: The exception.
+        :type `iws`: `IntegrateWebSocket`
+        :type `e`: `Exception`
         :returns: `None`
         """
         pass
@@ -919,18 +940,19 @@ class IntegrateWebSocket:
         :type `is_binary`: `bool`
         :returns: `None`
         """
+        data: dict[str, Any] = {}
         # Decode payload
         try:
-            data: dict[str, Any] = loads(payload.decode('utf-8'))
-        except ValueError:
-            raise
+            data = loads(payload.decode('utf-8'))
+        except ValueError as e:
+            self._on_exception(e)
 
         # Handle message
         if data["t"] == "ck":
             # Set logged in status
             self.is_logged_in = True if data["s"] == "OK" else False
             if not self.is_logged_in:
-                raise ValueError("Incorrect login details")
+                self._on_exception(ValueError("Incorrect login details"))
             self.on_acknowledgement(self, data)
             self.on_login(self)
         elif (
@@ -949,7 +971,7 @@ class IntegrateWebSocket:
         elif data["t"] == "df":
             self.on_depth_update(self, data)
         else:
-            raise KeyError
+            self._on_exception(KeyError(f"Invalid message: {data}"))
 
     def _on_reconnection(self, retries: int) -> None:
         """
@@ -968,6 +990,14 @@ class IntegrateWebSocket:
         :returns: `None`
         """
         self.on_stop_reconnection(self)
+
+    def _on_exception(self, e: Exception) -> None:
+        """
+        Call `on_exception` callback when a Python exception occurs.
+
+        :returns: `None`
+        """
+        self.on_exception(self, e)
 
     def _close(
         self, code: int | None = None, reason: str | None = None

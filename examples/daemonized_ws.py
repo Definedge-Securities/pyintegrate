@@ -79,6 +79,21 @@ def on_acknowledgement(iws: IntegrateWebSocket, ack: dict[str, str]) -> None:
     info(f"Ack : {ack}")
 
 
+def on_exception(iws: IntegrateWebSocket, e: Exception) -> None:
+    """
+    Callback to run on Python exceptions.
+    """
+    info(f"Exception : {e}")
+
+
+def on_close(iws: IntegrateWebSocket, code: int, reason: str) -> None:
+    """
+    Callback to run on WebSocket close.
+    """
+    info(f"Closed : {code} {reason}")
+    # iws.stop()  # This will stop the event loop and the program will exit.
+
+
 def main() -> None:
     """
     Main function.
@@ -97,6 +112,8 @@ def main() -> None:
     iws.on_order_update = on_order_update  # type: ignore
     iws.on_depth_update = on_depth_update  # type: ignore
     iws.on_acknowledgement = on_acknowledgement  # type: ignore
+    iws.on_exception = on_exception  # type: ignore
+    iws.on_close = on_close  # type: ignore
 
     # Non-Blocking WebSocket connection below (daemonize=True).
     iws.connect(daemonize=True)

@@ -25,9 +25,9 @@
 
 """
 This example shows how to use the IntegrateWebSocket class to connect to
-the Integrate WebSocket API and subscribe to ticks and bid-ask depth updates.
-The websocket connection is blocking, so you have to use the callbacks to
-manage the connection.
+the Integrate WebSocket API and subscribe to ticks, order updates and
+bid-ask depth updates. The websocket connection is blocking, so you have
+to use the callbacks to manage the connection.
 """
 
 from logging import INFO, basicConfig, info
@@ -78,7 +78,6 @@ def on_login(iws: IntegrateWebSocket) -> None:
     """
     Callback called when the WebSocket connection is established and the login is successful.
     """
-
     for exchange, symbol in symbols:
         tokens.append(get_token_for_symbol(exchange, symbol))
     # Subscribe to a list of symbols. You can have different lists for different subscriptions.
@@ -93,11 +92,33 @@ def on_tick_update(iws: IntegrateWebSocket, tick: dict[str, str]) -> None:
     info(f"Ticks: {tick}")
 
 
+def on_order_update(iws: IntegrateWebSocket, order: dict[str, str]) -> None:
+    """
+    Callback called when an order update is received.
+    """
+    info(f"Order update : {order}")
+
+
 def on_depth_update(iws: IntegrateWebSocket, depth: dict[str, str]) -> None:
     """
     Callback to receive bid-ask depth updates.
     """
     info(f"Depth update : {depth}")
+
+
+def on_exception(iws: IntegrateWebSocket, e: Exception) -> None:
+    """
+    Callback to run on Python exceptions.
+    """
+    info(f"Exception : {e}")
+
+
+def on_close(iws: IntegrateWebSocket, code: int, reason: str) -> None:
+    """
+    Callback to run on WebSocket close.
+    """
+    info(f"Closed : {code} {reason}")
+    # iws.stop()  # This will stop the event loop and the program will exit.
 
 
 def main() -> None:
@@ -109,7 +130,10 @@ def main() -> None:
     # Assign the callbacks.
     iws.on_login = on_login  # type: ignore
     iws.on_tick_update = on_tick_update  # type: ignore
+    iws.on_order_update = on_order_update  # type: ignore
     iws.on_depth_update = on_depth_update  # type: ignore
+    iws.on_exception = on_exception  # type: ignore
+    iws.on_close = on_close  # type: ignore
 
     # Blocking WebSocket connection below. Nothing after this will run.
     # You have to use the callbacks for further management.

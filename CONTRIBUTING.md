@@ -108,6 +108,23 @@ Ready to contribute? Here's how to set up `pyintegrate` for local development.
     poetry run pytest -s tests/unit
     ```
 
+9. To run integration tests
+
+    ```bash
+    poetry run pytest -s tests/integration --apiToken "api_token" --apiSecret "api_secret" --totp "totp"
+    ```
+
+    OR you can store the session keys and use them for subsequent runs as below
+
+    ```bash
+    poetry run pytest -s tests/integration --uid "uid" --actid "actid" --apiSessionKey "api_session_key" --wsSessionKey "ws_session_key"
+    ```
+
+Note
+----
+Integration tests require a valid API token and secret as the orders would be placed in the live market. Please use a test account for integration testing else use unit tests.
+
+
 9. Commit your changes and push your branch to GitHub:
 
     ```bash

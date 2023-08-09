@@ -79,13 +79,6 @@ Simple example to stream live quotes, get order and depth updates:
 
     basicConfig(level=INFO)
 
-    # Initialise the connection and login.
-    conn = ConnectToIntegrate()
-    conn.login(
-        api_token="YOUR_API_TOKEN",
-        api_secret="YOUR_API_SECRET",
-    )
-
 
     # Callback called when the WebSocket connection is established and the login is successful.
     def on_login(iws: IntegrateWebSocket) -> None:
@@ -95,9 +88,9 @@ Simple example to stream live quotes, get order and depth updates:
             (iws.c2i.EXCHANGE_TYPE_NSE, "3456"),
         ]
         # Subscribe to a list of symbols. You can have different lists for different subscriptions.
-        iws.subscribe(conn.SUBSCRIPTION_TYPE_TICK, tokens)
-        iws.subscribe(conn.SUBSCRIPTION_TYPE_ORDER, tokens)
-        iws.subscribe(conn.SUBSCRIPTION_TYPE_DEPTH, tokens)
+        iws.subscribe(iws.c2i.SUBSCRIPTION_TYPE_TICK, tokens)
+        iws.subscribe(iws.c2i.SUBSCRIPTION_TYPE_ORDER, tokens)
+        iws.subscribe(iws.c2i.SUBSCRIPTION_TYPE_DEPTH, tokens)
 
 
     # Callback to receive ticks.
@@ -121,6 +114,23 @@ Simple example to stream live quotes, get order and depth updates:
         info(f"Ack : {ack}")
 
 
+    # Callback to receive Python exceptions.
+    def on_exception(iws: IntegrateWebSocket, e: Exception) -> None:
+        info(f"Exception : {e}")
+
+
+    # Callback to run on WebSocket close.
+    def on_close(iws: IntegrateWebSocket, code: int, reason: str) -> None:
+        info(f"Closed : {code} {reason}")
+        # iws.stop() # This will stop the event loop and the program will exit.
+
+
+    # Initialise the connection and login.
+    conn = ConnectToIntegrate()
+    conn.login(
+        api_token="YOUR_API_TOKEN",
+        api_secret="YOUR_API_SECRET",
+    )
     iws = IntegrateWebSocket(conn)
 
     # Assign the callbacks.
@@ -129,6 +139,8 @@ Simple example to stream live quotes, get order and depth updates:
     iws.on_order_update = on_order_update
     iws.on_depth_update = on_depth_update
     iws.on_acknowledgement = on_acknowledgement
+    iws.on_exception = on_exception
+    iws.on_close = on_close
 
     # Blocking WebSocket connection below. Nothing after this will run.
     # You have to use the callbacks for further management.
@@ -138,38 +150,6 @@ Check out more examples in the examples_ folder.
 
 .. _examples: https://github.com/Definedge-Securities/pyintegrate/tree/main/examples
 
-Testing
--------
-Clone the repository
-
-.. code:: console
-
-    git clone https://github.com/definedge/pyintegrate.git
-
-Install the dependencies using poetry
-
-.. code:: console
-
-    poetry install
-
-Run unit tests
-
-.. code:: console
-
-    poetry run pytest -s tests/unit
-
-Run integration tests
-
-.. code:: console
-
-    poetry run pytest -s tests/integration --apiToken "api_token" --apiSecret "api_secret" --totp "totp"
-
-OR you can store the session keys and use them for subsequent runs as below
-
-.. code:: console
-
-    poetry run pytest -s tests/integration --uid "user_id" --actid "account_id" --apiSessionKey "api_session_key" --wsSessionKey "ws_session_key"
-
-Note
-----
-Integration tests require a valid API secret as the orders would be placed on the live market. Please use a test account for integration testing.
+Contributing_
+------------
+.. _Contributing: https://github.com/Definedge-Securities/pyintegrate/tree/main/CONTRIBUTING.md
