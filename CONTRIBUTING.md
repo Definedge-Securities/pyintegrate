@@ -46,13 +46,13 @@ Ready to contribute? Here's how to set up `pyintegrate` for local development.
     git clone https://github.com/your_github_username/pyintegrate.git
     ```
 
-3. Ensure that you are using Python 3.9 or above: 
+3. Ensure that you are using Python 3.9 or above:
 
     ```bash
     python --version
     ```
 
-4. Install `poetry` for dependency management and packaging: 
+4. Install `poetry` for dependency management and packaging:
 
     ```bash
     make install_poetry
@@ -77,7 +77,7 @@ Ready to contribute? Here's how to set up `pyintegrate` for local development.
     ```
 
 6. Install pre-commit hooks:
-    
+
     ```bash
     make install_hooks
     ```
@@ -99,7 +99,7 @@ Ready to contribute? Here's how to set up `pyintegrate` for local development.
 8. When you're done making changes, check that your changes pass the tests:
 
     ```bash
-    make test
+    make tests_only
     ```
 
     OR
@@ -124,8 +124,19 @@ Note
 ----
 Integration tests require a valid API token and secret as the orders would be placed in the live market. Please use a test account for integration testing else use unit tests.
 
+10. Make sure to run pre-commit hooks before committing your changes:
 
-9. Commit your changes and push your branch to GitHub:
+    ```bash
+    make tests_pre_commit
+    ```
+
+    OR
+
+    ```bash
+    poetry run pre-commit run --all-files
+    ```
+
+11. Commit your changes and push your branch to GitHub:
 
     ```bash
     git add .
@@ -140,4 +151,4 @@ Integration tests require a valid API token and secret as the orders would be pl
     - Subject lines should not exceed 50 characters.
     - The commit body should contain context about the change - how the code worked before, how it works now and why you decided to solve the issue in the way you did.
 
-10. Submit a pull request through GitHub.
+12. Submit a pull request through GitHub.
