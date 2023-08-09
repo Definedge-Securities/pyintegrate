@@ -650,6 +650,10 @@ class IntegrateWebSocket:
                 None,
             )
             if not t:
+                self._close(
+                    code=4003,
+                    reason=f"{token} in {exchange} not found in symbols file",
+                )
                 raise Exception(
                     f"{token} in {exchange} not found in symbols file"
                 )
