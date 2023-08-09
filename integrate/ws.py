@@ -558,7 +558,7 @@ class IntegrateWebSocket:
                 self._protocol.sendMessage(dumps({"t": t, "actid": self.c2i.actid}, ensure_ascii=False).encode('utf-8'))  # type: ignore
         except Exception as e:
             self._close(
-                code=1001,
+                code=1000,
                 reason=f"Error subscribing tokens for {subscription_type}: {e}",
             )
             raise
@@ -606,7 +606,7 @@ class IntegrateWebSocket:
                 self.subscriptions[unsubscription_type].remove(self.c2i.actid)
         except Exception as e:
             self._close(
-                code=1001,
+                code=1000,
                 reason=f"Error unsubscribing tokens for {unsubscription_type}: {e}",
             )
             raise
@@ -651,7 +651,7 @@ class IntegrateWebSocket:
             )
             if not t:
                 self._close(
-                    code=1001,
+                    code=1000,
                     reason=f"{token} in {exchange} not found in symbols file",
                 )
                 raise Exception(
