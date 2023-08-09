@@ -2,6 +2,21 @@
 
 
 
+## v1.0.18 (2023-08-09)
+
+### Ci
+
+* ci: checking precommit run ([`8f98dec`](https://github.com/Definedge-Securities/pyintegrate/commit/8f98dec0143ad25b90fc0e73055fe06f9a08d6f8))
+
+* ci: retesting with cache ([`5cede8e`](https://github.com/Definedge-Securities/pyintegrate/commit/5cede8e2dbf6a0737c557fe224be6ffa279e1b7d))
+
+### Fix
+
+* fix: revert pyproject.toml and separate CIs
+
+Revert pysemrel build command, separate CI files for release &amp; pr check ([`9fd19ef`](https://github.com/Definedge-Securities/pyintegrate/commit/9fd19ef6d1d649b26241799ab3644ae7f62d2148))
+
+
 ## v1.0.17 (2023-08-09)
 
 ### Chore
