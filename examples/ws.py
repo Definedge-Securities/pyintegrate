@@ -80,6 +80,7 @@ def on_login(iws: IntegrateWebSocket) -> None:
     """
     for exchange, symbol in symbols:
         tokens.append(get_token_for_symbol(exchange, symbol))
+    info(tokens)
     # Subscribe to a list of symbols. You can have different lists for different subscriptions.
     iws.subscribe(conn.SUBSCRIPTION_TYPE_TICK, tokens)
     iws.subscribe(conn.SUBSCRIPTION_TYPE_DEPTH, tokens)
@@ -111,6 +112,8 @@ def on_exception(iws: IntegrateWebSocket, e: Exception) -> None:
     Callback to run on Python exceptions.
     """
     info(f"Exception : {e}")
+    # Below will close the WebSocket connection.
+    # iws.close_on_exception("Closing connection due to exception")
 
 
 def on_close(iws: IntegrateWebSocket, code: int, reason: str) -> None:
@@ -118,7 +121,8 @@ def on_close(iws: IntegrateWebSocket, code: int, reason: str) -> None:
     Callback to run on WebSocket close.
     """
     info(f"Closed : {code} {reason}")
-    # iws.stop()  # This will stop the event loop and the program will exit.
+    # Below will stop the event loop and the program will exit.
+    # iws.stop()
 
 
 def main() -> None:

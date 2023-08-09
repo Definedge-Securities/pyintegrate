@@ -92,7 +92,6 @@ from autobahn.twisted.websocket import (  # type: ignore
 )
 from twisted.internet.base import BaseConnector
 from twisted.internet.protocol import ReconnectingClientFactory
-from twisted.internet.reactor import run, running, stop  # type: ignore
 from twisted.internet.ssl import optionsForClientTLS  # type: ignore
 from twisted.python.failure import Failure
 from twisted.python.log import PythonLoggingObserver
@@ -450,7 +449,9 @@ class IntegrateWebSocket:
 
         # Initialize IntegrateWebSocketClientFactory
         self._factory = IntegrateWebSocketClientFactory(
-            self._socket_url, proxy=proxy, reconnect=reconnect
+            self._socket_url,
+            proxy=proxy,
+            reconnect=reconnect,
         )
         self._factory.protocol = IntegrateWebSocketClientProtocol
         self._factory.logging = self._logging
@@ -467,23 +468,28 @@ class IntegrateWebSocket:
         self._factory.on_stop_reconnection = self._on_stop_reconnection  # type: ignore
 
         # Set auto ping with interval and timeout
-        self._factory.setProtocolOptions(autoPingInterval=self._auto_ping_interval, autoPingTimeout=self._auto_ping_timeout)  # type: ignore
+        self._factory.setProtocolOptions(  # type: ignore
+            autoPingInterval=self._auto_ping_interval,
+            autoPingTimeout=self._auto_ping_timeout,
+            serverConnectionDropTimeout=10,
+            closeHandshakeTimeout=10,
+        )
 
         # Establish WebSocket connection to the server
         opts: dict[str, Any] = {}
         opts["factory"] = self._factory
         opts["contextFactory"] = optionsForClientTLS(self._factory.host)  # type: ignore
         opts["timeout"] = self._connect_timeout
-        connectWS(**opts)
+        self._connector: BaseConnector = connectWS(**opts)
 
         try:
             # Run when reactor is not running
-            if not running:
+            if not self._connector.state == "disconnected":  # type: ignore
                 if daemonize:
                     # Signals are not allowed in non main thread by twisted so suppress it.
-                    Thread(target=run, daemon=True, kwargs={"installSignalHandlers": False}).start()  # type: ignore
+                    Thread(target=self._connector.reactor.run, daemon=True, kwargs={"installSignalHandlers": False}).start()  # type: ignore
                 else:
-                    run()
+                    self._connector.reactor.run()  # type: ignore
         except Exception as e:
             self._on_exception(e)
 
@@ -682,6 +688,16 @@ class IntegrateWebSocket:
         self.stop_retry()
         self._close(code, reason)
 
+    def close_on_exception(self, reason: str | None = None) -> None:
+        """
+        Close the WebSocket connection on exception.
+
+        :param `reason`: The close reason. Defaults to `None`.
+        :type `reason`: `str`
+        :returns: `None`
+        """
+        self.close(1000, reason)
+
     def stop(self) -> None:
         """
         Stop the event loop.
@@ -689,8 +705,10 @@ class IntegrateWebSocket:
         :returns: `None`
         :note: Should be used if main thread has to be closed in `on_close` method. Reconnection cannot happen after this method is used.
         """
-        self._factory.stopTrying() if self._factory else None
-        stop()
+        self.close(1000, "Client stopped")
+        self._connector.reactor.callFromThread(
+            self._connector.reactor.stop
+        ) if self._connector.reactor.running else None
 
     def stop_retry(self) -> None:
         """
@@ -1010,6 +1028,6 @@ class IntegrateWebSocket:
         :type `code`: `int`
         :type `reason`: `str`
         :returns: `None`
-        :note: `RFC6455 <https://datatracker.ietf.org/doc/html/rfc6455#section-7.4.1>`_ defines the status codes on connection close
+        :note: `Close Code Number <https://www.iana.org/assignments/websocket/websocket.xml#close-code-number>`_ defines the status codes on connection close
         """
         self._protocol.sendClose(code, reason) if self._protocol else None  # type: ignore

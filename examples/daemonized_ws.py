@@ -84,6 +84,8 @@ def on_exception(iws: IntegrateWebSocket, e: Exception) -> None:
     Callback to run on Python exceptions.
     """
     info(f"Exception : {e}")
+    # Below will close the WebSocket connection.
+    # iws.close_on_exception("Closing connection due to exception")
 
 
 def on_close(iws: IntegrateWebSocket, code: int, reason: str) -> None:
@@ -91,7 +93,8 @@ def on_close(iws: IntegrateWebSocket, code: int, reason: str) -> None:
     Callback to run on WebSocket close.
     """
     info(f"Closed : {code} {reason}")
-    # iws.stop()  # This will stop the event loop and the program will exit.
+    # Below will stop the event loop and the program will exit.
+    # iws.stop()
 
 
 def main() -> None:

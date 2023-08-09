@@ -9,7 +9,7 @@ Basic example showing order placement and getting order status from orderbook.
    :literal:
 
 Margins
-------
+-------
 Basic example showing getting margin requirements for a basket of orders.
 
 .. include:: ../../examples/margins.py

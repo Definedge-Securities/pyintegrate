@@ -117,12 +117,15 @@ Simple example to stream live quotes, get order and depth updates:
     # Callback to receive Python exceptions.
     def on_exception(iws: IntegrateWebSocket, e: Exception) -> None:
         info(f"Exception : {e}")
+        # Below will close the WebSocket connection.
+        # iws.close_on_exception("Closing connection due to exception")
 
 
     # Callback to run on WebSocket close.
     def on_close(iws: IntegrateWebSocket, code: int, reason: str) -> None:
         info(f"Closed : {code} {reason}")
-        # iws.stop() # This will stop the event loop and the program will exit.
+        # Below will stop the event loop and the program will exit.
+        # iws.stop()
 
 
     # Initialise the connection and login.
