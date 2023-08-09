@@ -82,7 +82,7 @@ from __future__ import annotations
 from json import dumps, loads
 from logging import Logger, getLogger
 from threading import Thread
-from typing import Any
+from typing import Any, Union
 
 from autobahn.twisted.websocket import connectWS  # type: ignore
 from autobahn.twisted.websocket import (  # type: ignore
@@ -534,6 +534,7 @@ class IntegrateWebSocket:
         :type `tokens`: `list[tuple[str, str]]`
         :returns: `None`
         """
+        self.check_token_validity(tokens) if tokens else None
         t: str = ""
         if subscription_type == self.c2i.SUBSCRIPTION_TYPE_TICK:
             t = "t"
@@ -576,6 +577,7 @@ class IntegrateWebSocket:
         :type `tokens`: `list[tuple[str, str]]`
         :returns: `None`
         """
+        self.check_token_validity(tokens) if tokens else None
         t: str = ""
         if unsubscription_type == self.c2i.SUBSCRIPTION_TYPE_TICK:
             t = "u"
@@ -625,6 +627,31 @@ class IntegrateWebSocket:
                         tuple(token.split("|"))  # type: ignore
                         for token in self.subscriptions[subscription_type]
                     ],
+                )
+
+    def check_token_validity(self, tokens: list[tuple[str, str]]) -> None:
+        """
+        Check if the given list of security tokens are valid.
+
+        :param `tokens`: List of security tokens to check.
+        :type `tokens`: `list[tuple[str, str]]`
+        :returns: `None`
+        """
+        for exchange, token in tokens:
+            if exchange not in self.c2i.exchange_types:
+                raise ValueError("Invalid exchange type")
+
+            token: Union[str, None] = next(
+                (
+                    i["token"]
+                    for i in self.c2i.symbols
+                    if i["segment"] == exchange and i["token"] == token
+                ),
+                None,
+            )
+            if not token:
+                raise Exception(
+                    f"{token} in {exchange} not found in symbols file"
                 )
 
     def close(

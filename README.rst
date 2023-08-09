@@ -74,7 +74,6 @@ Simple example to stream live quotes, get order and depth updates:
 .. code:: python
 
     from logging import INFO, basicConfig, info
-    from typing import Union
 
     from integrate import ConnectToIntegrate, IntegrateWebSocket
 
@@ -97,6 +96,7 @@ Simple example to stream live quotes, get order and depth updates:
         ]
         # Subscribe to a list of symbols. You can have different lists for different subscriptions.
         iws.subscribe(conn.SUBSCRIPTION_TYPE_TICK, tokens)
+        iws.subscribe(conn.SUBSCRIPTION_TYPE_ORDER, tokens)
         iws.subscribe(conn.SUBSCRIPTION_TYPE_DEPTH, tokens)
 
 
