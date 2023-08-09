@@ -90,9 +90,9 @@ jobs:
         run: poetry install --no-interaction
       - name: Python Semantic Release
         id: release
-        uses: python-semantic-release/python-semantic-release@master
-        env:
-          PATH: '$PATH:~/.local/bin'
+        uses: python-semantic-release/python-semantic-release@v8.0.4
+        # env:
+        #   PATH: '$PATH:~/.local/bin'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish package distributions to PyPI
