@@ -2,6 +2,13 @@
 
 
 
+## v1.0.21 (2023-08-10)
+
+### Fix
+
+* fix: updated manual publish workflow ([`7223d59`](https://github.com/Definedge-Securities/pyintegrate/commit/7223d59dfe14b9439d738acd781d98ac5df6fea8))
+
+
 ## v1.0.20 (2023-08-10)
 
 ### Fix
