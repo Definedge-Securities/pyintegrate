@@ -2,6 +2,15 @@
 
 
 
+## v1.0.20 (2023-08-10)
+
+### Fix
+
+* fix: add a manual publish workflow
+
+Manual publish workflow to allow publishing in case of GH token failure ([`9833082`](https://github.com/Definedge-Securities/pyintegrate/commit/9833082fcd6e03f2f56a52f6dfd834dd7d0aec40))
+
+
 ## v1.0.19 (2023-08-10)
 
 ### Fix
