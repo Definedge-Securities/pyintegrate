@@ -1,0 +1,34 @@
+name: Manual Publish
+
+on:
+  workflow_dispatch:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    concurrency: release
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      # - name: Clone Repository
+      #   uses: actions/checkout@v3
+      #   with:
+      #     fetch-depth: 0
+      # - name: Python Semantic Release
+      #   id: release
+      #   uses: python-semantic-release/python-semantic-release@master
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish package distributions to PyPI
+        # NOTE: DO NOT wrap the conditional in ${{ }} as it will always evaluate to true.
+        # See https://github.com/actions/runner/issues/1173
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+      - name: Publish package distributions to GitHub Releases
+        uses: python-semantic-release/upload-to-gh-release@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
