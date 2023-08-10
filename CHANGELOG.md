@@ -2,6 +2,21 @@
 
 
 
+## v1.0.19 (2023-08-10)
+
+### Fix
+
+* fix: modified ws.py
+
+Uncommented close_on_exception line for demonstration in a example ([`4809b19`](https://github.com/Definedge-Securities/pyintegrate/commit/4809b19ceabce176c8592b1a15cdef8c1a4ee420))
+
+### Unknown
+
+* Update issue templates
+
+Added bug report and feature report issue templates ([`2bfa7ee`](https://github.com/Definedge-Securities/pyintegrate/commit/2bfa7eecae567b6635a37a50d007ae417d94bfd4))
+
+
 ## v1.0.18 (2023-08-09)
 
 ### Ci
