@@ -762,7 +762,6 @@ def test_fetching_order_status(
     assert isinstance(order, dict)
     assert "order_id" in order
     assert order["order_id"] == placed_order["order_id"]
-    print(order)
     assert compare_keys("order.json", order) if "order_id" in order else True
 
 

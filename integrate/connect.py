@@ -243,7 +243,7 @@ class ConnectToIntegrate:
                 try:
                     # Get symbols
                     symbols_filename: str = abspath(
-                        join(dirname(__file__), "..", "allmaster.csv")
+                        join(dirname(__file__), "allmaster.csv")
                     )
                     remove(symbols_filename)
                 except FileNotFoundError:
@@ -304,7 +304,7 @@ class ConnectToIntegrate:
         """
         # Download the master file if not present
         symbols_filename: str = abspath(
-            join(dirname(__file__), "..", "allmaster.csv")
+            join(dirname(__file__), "allmaster.csv")
         )
         try:
             open(symbols_filename, "r")
@@ -318,9 +318,7 @@ class ConnectToIntegrate:
                 proxies=self._proxies,
             )
             with ZipFile(BytesIO(r.content), "r") as z:
-                z.extract(
-                    "allmaster.csv", abspath(join(dirname(__file__), ".."))
-                )
+                z.extract("allmaster.csv", abspath(dirname(__file__)))
 
         # Create a generator of symbols
         with open(symbols_filename, "r") as fp:
