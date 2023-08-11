@@ -412,6 +412,7 @@ class IntegrateWebSocket:
         reconnect_max_tries: int = 30,
         reconnect_max_delay: int = 60,
         connect_timeout: int = 30,
+        ssl_verify: bool = True,
         proxy: dict[str, str] | None = None,
     ) -> None:
         """
@@ -423,6 +424,7 @@ class IntegrateWebSocket:
         :param `reconnect_max_tries`: Maximum number of retries before it stops reconnecting. Defaults to 30.
         :param `reconnect_max_delay`: Maximum delay after which subsequent reconnection delay will become constant. Defaults to 60.
         :param `connect_timeout`: Maximum time (seconds) for which the API client will wait for a request to complete before it fails. Defaults to 30 seconds.
+        :param `ssl_verify`: Enable or disable SSL verification. Defaults to `True`.
         :param `proxy`: Proxy URL. Defaults to `None`.
         :type `socket_url`: `str`
         :type `daemonize`: `bool`
@@ -430,6 +432,7 @@ class IntegrateWebSocket:
         :type `reconnect_max_tries`: `int`
         :type `reconnect_max_delay`: `int`
         :type `connect_timeout`: `int`
+        :type `ssl_verify`: `bool`
         :type `proxy`: `dict[str, str]`
         """
         # Initialize properties
@@ -478,7 +481,8 @@ class IntegrateWebSocket:
         # Establish WebSocket connection to the server
         opts: dict[str, Any] = {}
         opts["factory"] = self._factory
-        opts["contextFactory"] = optionsForClientTLS(self._factory.host)  # type: ignore
+        if ssl_verify:
+            opts["contextFactory"] = optionsForClientTLS(self._factory.host)  # type: ignore
         opts["timeout"] = self._connect_timeout
         self._connector: BaseConnector = connectWS(**opts)
 

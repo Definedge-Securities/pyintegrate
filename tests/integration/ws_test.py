@@ -63,5 +63,5 @@ def test_websocket(iwebsocket: IntegrateWebSocket) -> None:
     iwebsocket.on_close = on_close  # type: ignore
 
     # Blocking WebSocket connection below.
-    iwebsocket.connect()
+    iwebsocket.connect(ssl_verify=False)
     assert True

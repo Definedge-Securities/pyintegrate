@@ -195,7 +195,7 @@ def test_symbols(c2i: ConnectToIntegrate) -> None:
         passthrough=True,
     )
     symbol_filename: str = abspath(
-        join(dirname(__file__), "..", "..", "allmaster.csv")
+        join(dirname(__file__), "..", "..", "integrate", "allmaster.csv")
     )
     # Remove the file if it exists
     if isfile(symbol_filename):

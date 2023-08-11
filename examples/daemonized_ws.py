@@ -119,6 +119,8 @@ def main() -> None:
     iws.on_close = on_close  # type: ignore
 
     # Non-Blocking WebSocket connection below (daemonize=True).
+    # If you receive an SSL Error after login, then replace the below line with:
+    # iws.connect(daemonize=True, ssl_verify=False)
     iws.connect(daemonize=True)
 
     # To keep the main thread running, an infinite loop as below should be

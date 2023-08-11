@@ -2,6 +2,16 @@
 
 
 
+## v1.0.22 (2023-08-11)
+
+### Fix
+
+* fix: update connect and ws
+
+1. Change location of allmaster.csv to be inside integrate folder
+2. Modify ws.py to not verify ssl certificate based on parameter ([`92c00a9`](https://github.com/Definedge-Securities/pyintegrate/commit/92c00a9b558e54c4428305f025cbc1ade797e0b9))
+
+
 ## v1.0.21 (2023-08-10)
 
 ### Fix

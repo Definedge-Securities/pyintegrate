@@ -147,6 +147,8 @@ Simple example to stream live quotes, get order and depth updates:
 
     # Blocking WebSocket connection below. Nothing after this will run.
     # You have to use the callbacks for further management.
+    # If you receive an SSL Error after login, then replace the below line with:
+    # iws.connect(ssl_verify=False)
     iws.connect()
 
 Check out more examples in the examples_ folder.

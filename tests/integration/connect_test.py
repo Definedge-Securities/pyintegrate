@@ -73,6 +73,13 @@ def test_storing_session_keys(c2i: ConnectToIntegrate) -> None:
     :type c2i: ConnectToIntegrate
     :return: None
     """
+    (
+        uid,
+        actid,
+        api_session_key,
+        ws_session_key,
+    ) = c2i.get_session_keys()
+
     c2i.set_session_keys(
         "integration_test",
         "integration_test",
@@ -84,6 +91,13 @@ def test_storing_session_keys(c2i: ConnectToIntegrate) -> None:
     assert c2i.api_session_key == "integration_test"
     assert c2i.ws_session_key == "integration_test"
 
+    c2i.set_session_keys(
+        uid,
+        actid,
+        api_session_key,
+        ws_session_key,
+    )
+
 
 def test_getting_session_keys(c2i: ConnectToIntegrate) -> None:
     """
@@ -93,6 +107,13 @@ def test_getting_session_keys(c2i: ConnectToIntegrate) -> None:
     :type c2i: ConnectToIntegrate
     :return: None
     """
+    (
+        uid,
+        actid,
+        api_session_key,
+        ws_session_key,
+    ) = c2i.get_session_keys()
+
     c2i.set_session_keys(
         "integration_test",
         "integration_test",
@@ -106,6 +127,13 @@ def test_getting_session_keys(c2i: ConnectToIntegrate) -> None:
         "integration_test",
     )
 
+    c2i.set_session_keys(
+        uid,
+        actid,
+        api_session_key,
+        ws_session_key,
+    )
+
 
 def test_symbols(c2i: ConnectToIntegrate) -> None:
     """
@@ -116,7 +144,7 @@ def test_symbols(c2i: ConnectToIntegrate) -> None:
     :return: None
     """
     symbol_filename: str = abspath(
-        join(dirname(__file__), "..", "..", "allmaster.csv")
+        join(dirname(__file__), "..", "..", "integrate", "allmaster.csv")
     )
     # Remove the file if it exists
     if isfile(symbol_filename):
