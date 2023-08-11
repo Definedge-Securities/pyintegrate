@@ -39,7 +39,7 @@ flake8 = "^6.1.0"
 isort = "^5.12.0"
 mypy = "^1.4.1"
 pre-commit = "^3.3.3"
-python-semantic-release = "^8.0.4"
+python-semantic-release = "^8.0.5"
 
 [tool.poetry.group.test.dependencies]
 coverage = "^7.2.7"
