@@ -1,0 +1,5 @@
+[flake8]
+max-line-length = 79
+ignore = E203, E266, E501, W503, F403, F401
+exclude = __pycache__, .git, .mypy_cache, .pytest_cache, .vscode, .venv, docs, build, dist, venv
+max-complexity = 10

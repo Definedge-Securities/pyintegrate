@@ -1,0 +1,27 @@
+{
+    "status": "SUCCESS",
+    "trades": [
+        {
+            "order_id": "1234567890",
+            "exchange": "NFO",
+            "price_type": "MARKET",
+            "validity": "DAY",
+            "product_type": "NORMAL",
+            "fill_id": "4627",
+            "fill_time": "01-02-2023 18:49:48",
+            "order_type": "SELL",
+            "tradingsymbol": "NIFTY23FEB23F",
+            "quantity": "50",
+            "token": "48757",
+            "filled_qty": "50",
+            "last_fill_qty": "50",
+            "price_precision": "2",
+            "lotsize": "50",
+            "ticksize": "0.05",
+            "price": "0.00",
+            "fill_price": "17665.00",
+            "exchange_time": "01-02-2023 18:49:48",
+            "exchange_orderid": "1001234567890 "
+        }
+    ]
+}

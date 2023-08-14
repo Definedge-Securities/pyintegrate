@@ -1,0 +1,89 @@
+{
+    "status": "SUCCESS",
+    "data": [
+        {
+            "dp_qty": "0",
+            "t1_qty": "25",
+            "holding_used": "0",
+            "avg_buy_price": "197.30",
+            "sell_amt": "0.000000",
+            "trade_qty": "0",
+            "tradingsymbol": [
+                {
+                    "exchange": "NSE",
+                    "tradingsymbol": "CUB-EQ",
+                    "token": "5701",
+                    "price_precision": "2",
+                    "ticksize": "0.05",
+                    "lotsize": "1",
+                    "isin": "INE491A01021"
+                },
+                {
+                    "exchange": "BSE",
+                    "tradingsymbol": "CUB",
+                    "token": "532210",
+                    "price_precision": "2",
+                    "ticksize": "0.05",
+                    "lotsize": "1",
+                    "isin": "INE491A01021"
+                }
+            ]
+        },
+        {
+            "dp_qty": "0",
+            "t1_qty": "300",
+            "holding_used": "0",
+            "avg_buy_price": "21.80",
+            "sell_amt": "0.000000",
+            "trade_qty": "0",
+            "tradingsymbol": [
+                {
+                    "exchange": "NSE",
+                    "tradingsymbol": "IOB-EQ",
+                    "token": "9348",
+                    "price_precision": "2",
+                    "ticksize": "0.05",
+                    "lotsize": "1",
+                    "isin": "INE565A01014"
+                },
+                {
+                    "exchange": "BSE",
+                    "tradingsymbol": "IOB",
+                    "token": "532388",
+                    "price_precision": "2",
+                    "ticksize": "0.05",
+                    "lotsize": "1",
+                    "isin": "INE565A01014"
+                }
+            ]
+        },
+        {
+            "dp_qty": "0",
+            "t1_qty": "200",
+            "holding_used": "0",
+            "avg_buy_price": "23.55",
+            "sell_amt": "0.000000",
+            "trade_qty": "0",
+            "tradingsymbol": [
+                {
+                    "exchange": "NSE",
+                    "tradingsymbol": "MAHABANK-EQ",
+                    "token": "11377",
+                    "price_precision": "2",
+                    "ticksize": "0.05",
+                    "lotsize": "1",
+                    "isin": "INE457A01014"
+                },
+                {
+                    "exchange": "BSE",
+                    "tradingsymbol": "MAHABANK",
+                    "token": "532525",
+                    "price_precision": "2",
+                    "ticksize": "0.05",
+                    "lotsize": "1",
+                    "isin": "INE457A01014"
+                }
+            ]
+        }
+    ]
+}

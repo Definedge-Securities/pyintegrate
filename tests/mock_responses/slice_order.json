@@ -1,0 +1,14 @@
+{
+    "status": "SUCCESS",
+    "message": "Orders submitted",
+    "orders": [
+        {
+            "status": "SUCCESS",
+            "order_id": "123456789000"
+        },
+        {
+            "status": "SUCCESS",
+            "order_id": "1234567890001"
+        }
+    ]
+}

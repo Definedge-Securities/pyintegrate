@@ -1,0 +1,21 @@
+{
+    "requestTime": "16:33:33 03-02-2023",
+    "status": "SUCCESS",
+    "exchange": "NSE",
+    "tradingsymbol": "ACC-EQ",
+    "company_name": "ACC LIMITED",
+    "segment": "EQT",
+    "instrument_name": "EQ",
+    "ticksize": "0.05",
+    "lotsize": "1",
+    "price_precision": "2",
+    "multiplier": "1",
+    "isin": "INE012A01025",
+    "freeze_qty": "54270",
+    "deliveryMargin": "0.00",
+    "varMargin": "20.00",
+    "token": "22",
+    "prcftr_d": "(1/1)*(1/1)",
+    "issueDate": "24-10-1994",
+    "listingDate": "01-01-1980"
+}
