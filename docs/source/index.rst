@@ -45,39 +45,9 @@ Simple example to stream live quotes, get order and depth updates:
 
 Check out more examples under `Examples <examples.html>`__.
 
-Testing
--------
-Clone the repository
-
-.. code:: console
-
-    git clone https://github.com/definedge/pyintegrate.git
-
-Install the dependencies using poetry
-
-.. code:: console
-
-    poetry install
-
-Run unit tests
-
-.. code:: console
-
-    poetry run pytest -s tests/unit
-
-Run integration tests
-
-.. code:: console
-
-    poetry run pytest -s tests/integration --apiToken "api_token" --apiSecret "api_secret" --totp "totp"
-
-OR you can store the session keys and use them for subsequent runs as below
-
-.. code:: console
-
-    poetry run pytest -s tests/integration --uid "user_id" --actid "account_id" --apiSessionKey "api_session_key" --wsSessionKey "ws_session_key"
-
-.. note:: Integration tests require a valid API secret as the orders would be placed on the live market. Please use a test account for integration testing.
+Contributing_
+-------------
+.. _Contributing: https://github.com/Definedge-Securities/pyintegrate/tree/main/CONTRIBUTING.md
 
 .. toctree::
     :maxdepth: 2
