@@ -2,6 +2,15 @@
 
 
 
+## v1.0.2 (2023-08-14)
+
+### Fix
+
+* fix: update .readthedocs.yaml
+
+Change path to conf.py ([`6fb6334`](https://github.com/Definedge-Securities/pyintegrate/commit/6fb63348e671213a8994f675034c043aabd3cdd6))
+
+
 ## v1.0.1 (2023-08-14)
 
 ### Fix
