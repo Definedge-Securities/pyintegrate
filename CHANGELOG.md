@@ -2,6 +2,13 @@
 
 
 
+## v1.0.1 (2023-08-14)
+
+### Fix
+
+* fix: create requirements.txt for readthedocs ([`60fe01d`](https://github.com/Definedge-Securities/pyintegrate/commit/60fe01d176131e4b11e8ff0de32ee443e1eafdc1))
+
+
 ## v1.0.0 (2023-08-14)
 
 ### Breaking
