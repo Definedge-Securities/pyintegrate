@@ -30,7 +30,7 @@ autobahn = "^23.6.2"
 pyopenssl = "^23.2.0"
 requests = "^2.31.0"
 service-identity = "^23.1.0"
-twisted = "^22.10.0"
+twisted = ">=22.10,<24.0"
 
 [tool.poetry.group.dev.dependencies]
 bandit = "^1.7.5"
