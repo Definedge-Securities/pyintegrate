@@ -114,6 +114,7 @@ class ConnectToIntegrate:
 
     TIMEFRAME_TYPE_MIN = "minute"
     TIMEFRAME_TYPE_DAY = "day"
+    TIMEFRAME_TYPE_TICK = "tick"
 
     def __init__(
         self,
@@ -186,6 +187,7 @@ class ConnectToIntegrate:
         self.timeframe_types: list[str] = [
             self.TIMEFRAME_TYPE_MIN,
             self.TIMEFRAME_TYPE_DAY,
+            self.TIMEFRAME_TYPE_TICK,
         ]
 
     def login(
