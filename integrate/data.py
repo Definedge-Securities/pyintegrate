@@ -153,6 +153,13 @@ class IntegrateData:
                                 "volume": int(data[5]),
                                 "oi": int(data[6]),
                             }
+                        elif len(data) == 4:
+                            yield {
+                                "utc": data[0],
+                                "ltp": float(data[1]),
+                                "ltq": float(data[2]),
+                                "oi": float(data[3]),                             
+                            }
                         else:
                             yield {
                                 "datetime": datetime.strptime(
