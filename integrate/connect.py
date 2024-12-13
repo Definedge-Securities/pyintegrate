@@ -79,6 +79,7 @@ class ConnectToIntegrate:
     EXCHANGE_TYPE_NSE = "NSE"
     EXCHANGE_TYPE_BSE = "BSE"
     EXCHANGE_TYPE_NFO = "NFO"
+    EXCHANGE_TYPE_BFO = "BFO"
     EXCHANGE_TYPE_CDS = "CDS"
     EXCHANGE_TYPE_MCX = "MCX"
 
@@ -157,6 +158,7 @@ class ConnectToIntegrate:
             self.EXCHANGE_TYPE_NSE,
             self.EXCHANGE_TYPE_BSE,
             self.EXCHANGE_TYPE_NFO,
+            self.EXCHANGE_TYPE_BFO,
             self.EXCHANGE_TYPE_CDS,
             self.EXCHANGE_TYPE_MCX,
         ]
