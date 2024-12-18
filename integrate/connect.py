@@ -79,6 +79,7 @@ class ConnectToIntegrate:
     EXCHANGE_TYPE_NSE = "NSE"
     EXCHANGE_TYPE_BSE = "BSE"
     EXCHANGE_TYPE_NFO = "NFO"
+    EXCHANGE_TYPE_BFO = "BFO"
     EXCHANGE_TYPE_CDS = "CDS"
     EXCHANGE_TYPE_MCX = "MCX"
 
@@ -123,11 +124,13 @@ class ConnectToIntegrate:
         timeout: Union[int, None] = None,
         logging: bool = False,
         proxies: Union[dict[str, str], None] = None,
+        ssl_verify: bool = True,
     ) -> None:
         # Set default values for the connection.
         self._logging: bool = logging
         self._timeout: int = timeout or 10  # in seconds
         self._proxies: dict[str, str] = proxies if proxies else {}
+        self._verify: bool = ssl_verify
 
         # Start a requests session.
         self._req_sess: Session = Session()
@@ -157,6 +160,7 @@ class ConnectToIntegrate:
             self.EXCHANGE_TYPE_NSE,
             self.EXCHANGE_TYPE_BSE,
             self.EXCHANGE_TYPE_NFO,
+            self.EXCHANGE_TYPE_BFO,
             self.EXCHANGE_TYPE_CDS,
             self.EXCHANGE_TYPE_MCX,
         ]
@@ -401,7 +405,7 @@ class ConnectToIntegrate:
                 data=data_params,
                 params=query_params,
                 headers=headers,
-                verify=True,
+                verify=self._verify,
                 allow_redirects=True,
                 timeout=self._timeout,
                 proxies=self._proxies,
