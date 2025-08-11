@@ -28,7 +28,7 @@ from integrate.data import IntegrateData
 from integrate.orders import IntegrateOrders
 from integrate.ws import IntegrateWebSocket
 
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 __all__: list[str] = [
     "ConnectToIntegrate",
