@@ -341,7 +341,7 @@ class ConnectToIntegrate:
                     "option_type": line[8],
                     "strike": str(
                         int(
-                            int(line[9]) / (int(line[11]) * 10 ^ int(line[10]))
+                            int(line[9]) / (int(line[11]) * 10 ** int(line[10]))
                         )
                     ),
                     "isin": line[12],
