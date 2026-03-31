@@ -182,6 +182,7 @@ class IntegrateOrders:
 
         if algo_id == "":
             raise ValueError("Algo id cannot be blank")
+            
 
         json_params: dict[str, Any] = locals()
         for k in list(json_params.keys()):
