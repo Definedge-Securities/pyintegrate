@@ -97,6 +97,7 @@ class IntegrateOrders:
         product_type: str,
         quantity: int,
         tradingsymbol: str,
+        algo_id: str,
         amo: Union[str, None] = None,
         book_loss_price: Union[float, None] = None,
         book_profit_price: Union[float, None] = None,
@@ -117,6 +118,7 @@ class IntegrateOrders:
         :param `product_type`: Product type. Valid values are CNC, INTRADAY, NORMAL.
         :param `quantity`: Quantity to transact.
         :param `tradingsymbol`: Trading symbol of security to transact.
+        :param `algo_id`: Algo Id for the order.
         :param `amo`: If set to True, AMO order will be placed. Defaults to False.
         :param `book_loss_price`: Book loss price (Applicable only for Bracket orders).
         :param `book_profit_price`: Book profit price (Applicable only for Bracket orders).
@@ -133,6 +135,7 @@ class IntegrateOrders:
         :type `product_type`: `str`
         :type `quantity`: `int`
         :type `tradingsymbol`: `str`
+        :type `algo_id`:`str`
         :type `amo`: `str`
         :type `book_loss_price`: `float`
         :type `book_profit_price`: `float`
@@ -176,6 +179,9 @@ class IntegrateOrders:
 
         if quantity == 0:
             raise ValueError("Quantity cannot be 0")
+
+        if algo_id == "":
+            raise ValueError("Algo id cannot be blank")
 
         json_params: dict[str, Any] = locals()
         for k in list(json_params.keys()):
