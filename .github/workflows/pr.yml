@@ -34,6 +34,7 @@ jobs:
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
+          version: 2.1.3
           virtualenvs-create: true
           virtualenvs-in-project: true
       - name: Load cached venv if cache exists
