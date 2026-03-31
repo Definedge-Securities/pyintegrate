@@ -64,6 +64,7 @@ def test_placing_order(c2i: ConnectToIntegrate, io: IntegrateOrders) -> None:
         product_type=c2i.PRODUCT_TYPE_NORMAL,
         quantity=50,
         tradingsymbol="NIFTY23FEB23F",
+        algo_id="99999",
     )
     # Assert that the response is a dict and contains the required keys
     assert isinstance(order, dict)
