@@ -49,6 +49,7 @@ def custom_order_placement(
     product_type: str,
     quantity: int,
     tradingsymbol: str,
+    algo_id:str,
     price: str = "ltp",
     trigger_price: str = "ltp",
 ) -> dict[str, Any]:
@@ -96,6 +97,7 @@ def custom_order_placement(
             product_type=product_type,
             quantity=quantity,
             tradingsymbol=tradingsymbol,
+            algo_id=algo_id,
         )
     elif price_type == c2i.PRICE_TYPE_LIMIT:
         price_value: float = (
@@ -111,6 +113,7 @@ def custom_order_placement(
             product_type=product_type,
             quantity=quantity,
             tradingsymbol=tradingsymbol,
+            algo_id=algo_id,
         )
     elif price_type == c2i.PRICE_TYPE_SL_MKT:
         trigger_price_value: float = (
@@ -127,6 +130,7 @@ def custom_order_placement(
             quantity=quantity,
             tradingsymbol=tradingsymbol,
             trigger_price=trigger_price_value,
+            algo_id=algo_id,
         )
     elif price_type == c2i.PRICE_TYPE_SL_LMT:
         trigger_price_value = (
@@ -148,6 +152,7 @@ def custom_order_placement(
             quantity=quantity,
             tradingsymbol=tradingsymbol,
             trigger_price=trigger_price_value,
+            algo_id=algo_id,
         )
 
     assert isinstance(order, dict)
