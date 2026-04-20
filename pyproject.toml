@@ -27,7 +27,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.9"
 autobahn = "^23.6.2"
-pyopenssl = "^23.2.0"
+pyopenssl = ">=23.2,<26.0"
 requests = "^2.31.0"
 service-identity = "^23.1.0"
 twisted = "^22.10.0"
